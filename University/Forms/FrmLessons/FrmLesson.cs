@@ -1,12 +1,12 @@
 ﻿using University.Core.Extension;
-using University.Domain.Students.Aggregate;
+using University.Domain.Lessons.Aggregate;
 using University.Infra;
 
-namespace University.Forms;
+namespace University.Forms.FrmLessons;
 
-public partial class FrmStudent : Form
+public partial class FrmLesson : Form
 {
-    public FrmStudent()
+    public FrmLesson()
     {
         InitializeComponent();
         GetData();
@@ -20,17 +20,16 @@ public partial class FrmStudent : Form
             return;
         }
 
-        var student = Student.Create(textBox1.Text);
-        DbContext.Students.Add(student);
+        var lesson = Lesson.Create(textBox1.Text);
+        DbContext.Lessons.Add(lesson);
         GetData();
     }
 
 
     private void GetData()
     {
-        dataGridView1.BindingSource(DbContext.Students);
+        dataGridView1.BindingSource(DbContext.Lessons);
         dataGridView1.Columns.CreateTextBoxColumn("Id", "شناسه", 250);
-        dataGridView1.Columns.CreateTextBoxColumn("FullName", "نام  ", 250);
+        dataGridView1.Columns.CreateTextBoxColumn("Title", "نام  ", 250);
     }
 }
-

@@ -2,33 +2,15 @@
 
 public static class DataGridViewExtension
 {
-    public static string Detail = nameof(Detail);
     public static string Select = nameof(Select);
-    public static string Create = nameof(Create);
-    public static string List = nameof(List);
-    public static string Update = nameof(Update);
-    public static string File = nameof(File);
-    public static string Delete = nameof(Delete);
-    public static string Download = nameof(Download);
-    public static string Manage = nameof(Manage);
-    public static string ManageUser = nameof(ManageUser);
-    public static string ManageRole = nameof(ManageRole);
-    public static string ManageAppModule = nameof(ManageAppModule);
-    public static string ManageRolePermission = nameof(ManageRolePermission);
-    public static string ManageUserRole = nameof(ManageUserRole);
-    public static string ManageWarehouse = nameof(ManageWarehouse);
+    public static string AddClassToStudent = nameof(AddClassToStudent);
+    public static string GetClassByStudent = nameof(GetClassByStudent);
+    public static string GetConflictByStudent = nameof(GetConflictByStudent);
 
 
     public static void BindingSource<T>(this DataGridView dataGridView, List<T>? data)
     {
-        dataGridView.AutoGenerateColumns = false;
-        var bindingSource = new BindingSource();
-        bindingSource.DataSource = data;
-        dataGridView.DataSource = bindingSource;
-        dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-    }
-  public static void BindingSource<T>(this DataGridView dataGridView, IReadOnlyList<T>? data)
-    {
+        dataGridView.AllowUserToAddRows = false;
         dataGridView.AutoGenerateColumns = false;
         var bindingSource = new BindingSource();
         bindingSource.DataSource = data;
@@ -36,7 +18,6 @@ public static class DataGridViewExtension
         dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
     }
 
-    
 
     public static void CreateButtonColumn(this DataGridViewColumnCollection columns, string id, string name,
         int width = 130)

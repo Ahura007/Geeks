@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using University.Core.Enum;
+﻿using University.Core.Enum;
 using University.Core.Extension;
 using University.Domain.Classes.Aggregate;
 using University.Infra;
-using University.Infra.Query;
+using University.Infra.Query.Classes;
 
-namespace University.Forms;
+namespace University.Forms.FrmClasses;
 
 public partial class FrmClass : Form
 {
@@ -36,13 +35,9 @@ public partial class FrmClass : Form
     {
         var classType = (ClassType)ComClassType.GetSelectedValue<byte>();
         if (classType == ClassType.FaceToFace)
-        {
             textBox1.PlaceholderText = "کلاس حضوری";
-        }
         else
-        {
             textBox1.PlaceholderText = "لینک";
-        }
     }
 
     private void GetData()
@@ -65,34 +60,22 @@ public partial class FrmClass : Form
         var classType = ComClassType.GetSelectedValue<ClassType>();
 
         var lessonId = ComLesson.GetSelectedValue<Guid>();
-        if (DbContext.Lessons.All(x => x.Id != lessonId))
-        {
-            throw new Exception("درس انتخابی معتبر نمیباشد");
-        }
+        if (DbContext.Lessons.All(x => x.Id != lessonId)) throw new Exception("درس انتخابی معتبر نمیباشد");
 
-        if (string.IsNullOrEmpty(textBox1.Text))
-        {
-            throw new Exception(textBox1.PlaceholderText + "$نمتواند خالی باشد");
-        }
+        if (string.IsNullOrEmpty(textBox1.Text)) throw new Exception(textBox1.PlaceholderText + "$نمتواند خالی باشد");
 
-        var startUtc = new DateTimeOffset(dateTimePicker1.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker1.Value)).ToUniversalTime();
-        var endUtc = new DateTimeOffset(dateTimePicker2.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker2.Value)).ToUniversalTime();
+        var startUtc = new DateTimeOffset(dateTimePicker1.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker1.Value))
+            .ToUniversalTime();
+        var endUtc = new DateTimeOffset(dateTimePicker2.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker2.Value))
+            .ToUniversalTime();
 
         if (startUtc <= DateTimeOffset.UtcNow)
-        {
             throw new InvalidOperationException("زمان شروع کلاس باید در آینده باشد.");
-        }
 
-        if (endUtc <= startUtc)
-        {
-            throw new InvalidOperationException("زمان پایان کلاس باید بعد از زمان شروع باشد.");
-        }
+        if (endUtc <= startUtc) throw new InvalidOperationException("زمان پایان کلاس باید بعد از زمان شروع باشد.");
 
         var hasConflict = DbContext.Classes.Any(c => startUtc < c.EndTimeUtc && endUtc > c.StartTimeUtc);
-        if (hasConflict)
-        {
-            throw new InvalidOperationException("این بازه زمانی با کلاس دیگری تداخل دارد.");
-        }
+        if (hasConflict) throw new InvalidOperationException("این بازه زمانی با کلاس دیگری تداخل دارد.");
 
 
         var @class = Class.Create(lessonId, startUtc, endUtc, capacity, classType, textBox1.Text);
@@ -102,4 +85,3 @@ public partial class FrmClass : Form
         GetData();
     }
 }
-

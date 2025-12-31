@@ -1,6 +1,6 @@
-﻿namespace University.Forms
+﻿namespace University.Forms.FrmStudents
 {
-    partial class FrmStudent
+    partial class FrmGetClassByStudent
     {
         /// <summary>
         /// Required designer variable.
@@ -28,81 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            groupBox1.SuspendLayout();
+            label1 = new Label();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(614, 100);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "ثبت نام دانش آموزان";
-            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(0, 106);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Location = new Point(0, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(614, 344);
-            groupBox2.TabIndex = 1;
+            groupBox2.Size = new Size(1050, 450);
+            groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
-            groupBox2.Text = "نمایش دانش آموزان";
+            groupBox2.Text = "لیست کلاسها";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
+            dataGridView1.Dock = DockStyle.Bottom;
+            dataGridView1.Location = new Point(3, 41);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(608, 322);
+            dataGridView1.Size = new Size(1044, 406);
             dataGridView1.TabIndex = 0;
             // 
-            // textBox1
+            // label1
             // 
-            textBox1.Dock = DockStyle.Right;
-            textBox1.Location = new Point(432, 19);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "نام و نام خانوادگی";
-            textBox1.Size = new Size(179, 23);
-            textBox1.TabIndex = 0;
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(1050, 38);
+            label1.TabIndex = 5;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button1
-            // 
-            button1.Location = new Point(432, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(180, 49);
-            button1.TabIndex = 1;
-            button1.Text = "ثبت نام دانش آموز";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // FrmStudent
+            // FrmGetClassByStudent
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(614, 450);
+            ClientSize = new Size(1050, 450);
+            Controls.Add(label1);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "FrmStudent";
+            Name = "FrmGetClassByStudent";
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterParent;
-            Text = "FrmStudent";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            Text = "FrmGetClassByStudent";
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -110,10 +84,8 @@
 
         #endregion
 
-        private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private Label label1;
         private DataGridView dataGridView1;
-        private Button button1;
-        private TextBox textBox1;
     }
 }

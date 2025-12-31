@@ -1,6 +1,6 @@
 ﻿using University.Core.Enum;
 
-namespace University.Infra.Query;
+namespace University.Infra.Query.Classes;
 
 internal sealed class ClassQueryResult
 {

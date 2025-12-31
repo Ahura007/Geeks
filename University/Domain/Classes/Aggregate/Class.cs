@@ -16,7 +16,8 @@ internal class Class : AggregateRoot<Guid>
     public ClassType ClassType { get; private set; }
     public short Capacity { get; private set; }
 
-    public static Class Create(Guid lessonId, DateTimeOffset startTimeUtc, DateTimeOffset endTimeUtc, short capacity, ClassType classType, string locationOrLink)
+    public static Class Create(Guid lessonId, DateTimeOffset startTimeUtc, DateTimeOffset endTimeUtc, short capacity,
+        ClassType classType, string locationOrLink)
     {
         if (capacity <= 0)
             throw new ArgumentException("Capacity must be greater than zero.");
@@ -45,8 +46,6 @@ internal class Class : AggregateRoot<Guid>
     private static void ValidateLink(string locationOrLink)
     {
         if (!Uri.TryCreate(locationOrLink, UriKind.Absolute, out var uri))
-        {
             throw new ArgumentException("link is Invalid.");
-        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace University.Forms
+﻿namespace University.Forms.FrmClasses
 {
     partial class FrmClass
     {

@@ -9,7 +9,6 @@ public static class ComboBoxExtension
         comboBox.DataSource = data;
     }
 
-   
 
     public static T GetSelectedValue<T>(this ComboBox comboBox)
     {
@@ -20,7 +19,7 @@ public static class ComboBoxExtension
             return default;
 
 
-        object value = comboBox.SelectedValue;
+        var value = comboBox.SelectedValue;
 
         if (typeof(T) == typeof(Guid))
         {
@@ -33,11 +32,8 @@ public static class ComboBoxExtension
             return default;
         }
 
-        if (typeof(T).IsEnum)
-        {
-            return (T)System.Enum.Parse(typeof(T), value.ToString());
-        }
-        
+        if (typeof(T).IsEnum) return (T)System.Enum.Parse(typeof(T), value.ToString());
+
         return (T)Convert.ChangeType(value, typeof(T));
     }
 }

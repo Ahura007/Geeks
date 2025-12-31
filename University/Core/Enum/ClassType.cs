@@ -2,6 +2,6 @@
 
 public enum ClassType : byte
 {
-    FaceToFace = 1,//حضوری
-    Virtual = 2//مجازی
+    FaceToFace = 1, //حضوری
+    Virtual = 2 //مجازی
 }

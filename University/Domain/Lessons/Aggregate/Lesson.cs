@@ -12,7 +12,6 @@ internal class Lesson : AggregateRoot<Guid>
     public string Title { get; private set; }
 
 
-
     public static Lesson Create(string title)
     {
         if (string.IsNullOrWhiteSpace(title)) throw new ArgumentException("Title required");

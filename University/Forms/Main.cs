@@ -1,4 +1,8 @@
-﻿namespace University.Forms;
+﻿using University.Forms.FrmClasses;
+using University.Forms.FrmLessons;
+using University.Forms.FrmStudents;
+
+namespace University.Forms;
 
 public partial class Main : Form
 {

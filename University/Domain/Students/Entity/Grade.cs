@@ -2,7 +2,7 @@
 
 namespace University.Domain.Students.Entity;
 
-internal class Grade : Entity<int>
+internal class Grade : Entity<Guid>
 {
     internal Grade(Guid lessonId, int score)
     {
@@ -10,7 +10,7 @@ internal class Grade : Entity<int>
         Score = score;
     }
 
-    public Guid LessonId { get; }
+    public Guid LessonId { get; private set; }
     public int Score { get; }
     public int? ResitScore { get; private set; }
     public int FinalScore => ResitScore.HasValue && ResitScore > Score ? ResitScore.Value : Score;
