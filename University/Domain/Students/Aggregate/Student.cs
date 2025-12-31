@@ -24,6 +24,14 @@ internal class Student : AggregateRoot<Guid>
 
     public static Student Create(string fullName)
     {
+        if (string.IsNullOrWhiteSpace(fullName))
+            throw new ArgumentException("نام دانشجو نمی‌تواند خالی باشد.", nameof(fullName));
+
+        fullName = fullName.Trim();
+
+        if (fullName.Length is < 3 or > 100)
+            throw new ArgumentException("نام دانشجو باید بین ۳ تا ۱۰۰ کاراکتر باشد.", nameof(fullName));
+
         return new Student
         {
             FullName = fullName,
@@ -51,9 +59,12 @@ internal class Student : AggregateRoot<Guid>
         if (lessonId == Guid.Empty)
             throw new ArgumentException("Invalid lessonId");
 
+        if (resitGrade < 0 || resitGrade > 100)
+            throw new ArgumentException("Resit score must be 0-100");
+
         var grade = _grades.FirstOrDefault(g => g.LessonId == lessonId);
         if (grade == null)
-            throw new InvalidOperationException("No existing grade.");
+            throw new InvalidOperationException("No existing grade found for resit.");
 
         grade.AddResitGrade(resitGrade);
     }
@@ -69,12 +80,12 @@ internal class Student : AggregateRoot<Guid>
         _studentClass.Add(new StudentClass(Id, classId));
     }
 
-    public void AddConflictToStudent(Guid classId, ConflictType conflictType)
+    public void AddConflictToStudent(Guid classId, ConflictType conflictType, DateTimeOffset occurredAt)
     {
         if (classId == Guid.Empty)
             throw new ArgumentException("Invalid classId");
 
-        if (_studentConflict.Any(sc => sc.ClassId == classId && sc.DateTimeOffset == DateTimeOffset.UtcNow))
+        if (_studentConflict.Any(sc => sc.ClassId == classId && sc.DateTimeOffset == occurredAt))
             throw new InvalidOperationException("Student already have Conflict in this class");
 
         _studentConflict.Add(new StudentConflict(Id, classId, conflictType));

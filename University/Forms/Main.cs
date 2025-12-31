@@ -1,6 +1,6 @@
-﻿using University.Forms.FrmClasses;
-using University.Forms.FrmLessons;
+﻿using University.Forms.FrmLessons;
 using University.Forms.FrmStudents;
+using University.Forms.SeminarGroups;
 
 namespace University.Forms;
 
@@ -23,6 +23,6 @@ public partial class Main : Form
 
     private void BtnClass_Click(object sender, EventArgs e)
     {
-        new FrmClass().ShowDialog();
+        new FrmSeminarGroup().ShowDialog();
     }
 }

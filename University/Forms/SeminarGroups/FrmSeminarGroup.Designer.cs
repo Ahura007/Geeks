@@ -1,6 +1,6 @@
-﻿namespace University.Forms.FrmClasses
+﻿namespace University.Forms.SeminarGroups
 {
-    partial class FrmClass
+    partial class FrmSeminarGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -170,7 +170,7 @@
             dataGridView1.Size = new Size(953, 297);
             dataGridView1.TabIndex = 0;
             // 
-            // FrmClass
+            // FrmSeminarGroup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -178,10 +178,10 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "FrmClass";
+            Name = "FrmSeminarGroup";
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterParent;
-            Text = "FrmClass";
+            Text = "FrmSeminarGroup";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

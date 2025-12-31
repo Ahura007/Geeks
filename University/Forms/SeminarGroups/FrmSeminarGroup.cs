@@ -1,14 +1,14 @@
 ﻿using University.Core.Enum;
 using University.Core.Extension;
-using University.Domain.Classes.Aggregate;
+using University.Domain.SeminarGroups.Aggregate;
 using University.Infra;
 using University.Infra.Query.Classes;
 
-namespace University.Forms.FrmClasses;
+namespace University.Forms.SeminarGroups;
 
-public partial class FrmClass : Form
+public partial class FrmSeminarGroup : Form
 {
-    public FrmClass()
+    public FrmSeminarGroup()
     {
         InitializeComponent();
         GetClassType();
@@ -78,7 +78,7 @@ public partial class FrmClass : Form
         if (hasConflict) throw new InvalidOperationException("این بازه زمانی با کلاس دیگری تداخل دارد.");
 
 
-        var @class = Class.Create(lessonId, startUtc, endUtc, capacity, classType, textBox1.Text);
+        var @class = SeminarGroup.Create(lessonId, startUtc, endUtc, capacity, classType, textBox1.Text);
         DbContext.Classes.Add(@class);
 
 

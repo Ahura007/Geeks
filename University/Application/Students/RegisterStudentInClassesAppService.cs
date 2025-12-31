@@ -49,9 +49,6 @@ internal sealed class RegisterStudentInClassesAppService
             }
         }
 
-        foreach (var cls in orderedClasses)
-        {
-            student.AddClassToStudent(cls.Id);
-        }
+        foreach (var cls in orderedClasses) student.AddClassToStudent(cls.Id);
     }
 }
