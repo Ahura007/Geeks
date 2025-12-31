@@ -28,9 +28,16 @@ internal sealed class RegisterStudentInClassesAppService
             .Where(c => c is not null)
             .ToList();
 
-        foreach (var cls in classes)
+        var orderedClasses = classes
+            .Select(c => new { Class = c, RequestTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds() })
+            .OrderBy(c => c.RequestTime)
+            .Select(c => c.Class)
+            .ToList();
+
+        foreach (var cls in orderedClasses)
         {
             var registerCount = DbContext.Students.SelectMany(s => s.StudentClass).Count(sc => sc.ClassId == cls.Id);
+
             try
             {
                 _domainService.ValidateRegistration(student, cls, registeredClasses, registerCount);
@@ -42,6 +49,9 @@ internal sealed class RegisterStudentInClassesAppService
             }
         }
 
-        foreach (var cls in classes) student.AddClassToStudent(cls.Id);
+        foreach (var cls in orderedClasses)
+        {
+            student.AddClassToStudent(cls.Id);
+        }
     }
 }
