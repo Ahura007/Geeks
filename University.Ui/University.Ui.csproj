@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\University.Infra\University.Infra.csproj" />
+		<ProjectReference Include="..\University\University.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Forms\FrmModules\FrmModule.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\FrmStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\GetConflictByStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\Modules\FrmAddModuleToStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\Modules\FrmGetModuleByStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\StudentSeminarGroup\FrmAddSeminarGroupToStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FrmStudents\StudentSeminarGroup\FrmGetSeminarGroupByStudent.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Main.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\SeminarGroups\FrmSeminarGroup.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
+
+</Project>

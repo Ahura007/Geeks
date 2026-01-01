@@ -1,5 +1,5 @@
-﻿using University.Core.Enum;
-using University.Infra;
+﻿using University.Infra.Core.Enum;
+using University.Infra.Domain;
 
 namespace University.Domain.SeminarGroups.Aggregate;
 
@@ -9,19 +9,19 @@ internal sealed class SeminarGroup : AggregateRoot<Guid>
     {
     }
 
-    public Guid LessonId { get; private set; }
+    public Guid ModuleId { get; private set; }
     public DayOfWeek DayOfWeek { get; private set; }
     public TimeSpan StartTime { get; private set; }
     public TimeSpan EndTime { get; private set; }
     public short Capacity { get; private set; }
-    public ClassType ClassType { get; private set; }
+    public SeminarGroupType SeminarGroupType { get; private set; }
     public string LocationOrLink { get; private set; } = string.Empty;
 
-    public static SeminarGroup Create(Guid lessonId, DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime,
-        short capacity, ClassType classType, string locationOrLink)
+    public static SeminarGroup Create(Guid moduleId, DayOfWeek dayOfWeek, TimeSpan startTime, TimeSpan endTime,
+        short capacity, SeminarGroupType seminarGroupType, string locationOrLink)
     {
-        if (lessonId == Guid.Empty)
-            throw new ArgumentException("LessonId cannot be empty.", nameof(lessonId));
+        if (moduleId == Guid.Empty)
+            throw new ArgumentException("ModuleId cannot be empty.", nameof(ModuleId));
 
         if (capacity <= 0)
             throw new ArgumentException("Capacity must be greater than zero.", nameof(capacity));
@@ -38,18 +38,18 @@ internal sealed class SeminarGroup : AggregateRoot<Guid>
         if (string.IsNullOrWhiteSpace(locationOrLink))
             throw new ArgumentException("Location or link is required.", nameof(locationOrLink));
 
-        if (classType == ClassType.Virtual && !IsValidUrl(locationOrLink))
+        if (seminarGroupType == SeminarGroupType.Virtual && !IsValidUrl(locationOrLink))
             throw new ArgumentException("Invalid URL for virtual class.", nameof(locationOrLink));
 
         return new SeminarGroup
         {
             Id = Guid.NewGuid(),
-            LessonId = lessonId,
+            ModuleId = moduleId,
             DayOfWeek = dayOfWeek,
             StartTime = startTime,
             EndTime = endTime,
             Capacity = capacity,
-            ClassType = classType,
+            SeminarGroupType = seminarGroupType,
             LocationOrLink = locationOrLink
         };
     }

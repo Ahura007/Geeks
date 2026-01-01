@@ -1,32 +1,32 @@
-﻿using University.Core.Enum;
-using University.Infra;
+﻿using University.Infra.Core.Enum;
+using University.Infra.Domain;
 
 namespace University.Domain.Students.Entity;
 
 internal class StudentConflict : Entity<Guid>
 {
-    internal StudentConflict(Guid studentId, Guid classId, ConflictType conflictType, DateTimeOffset occurredAt)
+    internal StudentConflict(Guid studentId, Guid seminarGroupId, ConflictType conflictType, DateTimeOffset occurredAt)
     {
         if (studentId == Guid.Empty)
             throw new ArgumentException("StudentId cannot be empty.", nameof(studentId));
 
-        if (classId == Guid.Empty)
-            throw new ArgumentException("ClassId cannot be empty.", nameof(classId));
+        if (seminarGroupId == Guid.Empty)
+            throw new ArgumentException("SeminarGroupId cannot be empty.", nameof(seminarGroupId));
 
         StudentId = studentId;
-        ClassId = classId;
+        SeminarGroupId = seminarGroupId;
         ConflictType = conflictType;
         OccurredAt = occurredAt;
         Id = Guid.NewGuid();
     }
 
 
-    internal StudentConflict(Guid studentId, Guid classId, ConflictType conflictType)
-        : this(studentId, classId, conflictType, DateTimeOffset.UtcNow)
+    internal StudentConflict(Guid studentId, Guid seminarGroupId, ConflictType conflictType)
+        : this(studentId, seminarGroupId, conflictType, DateTimeOffset.UtcNow)
     {
     }
 
-    public Guid ClassId { get; private set; }
+    public Guid SeminarGroupId { get; private set; }
 
     public Guid StudentId { get; private set; }
 

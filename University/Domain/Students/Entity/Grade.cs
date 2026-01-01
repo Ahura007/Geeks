@@ -1,22 +1,22 @@
-﻿using University.Infra;
+﻿using University.Infra.Domain;
 
 namespace University.Domain.Students.Entity;
 
 internal class Grade : Entity<Guid>
 {
-    internal Grade(Guid lessonId, int score)
+    internal Grade(Guid moduleId, int score)
     {
-        if (lessonId == Guid.Empty)
-            throw new ArgumentException("LessonId cannot be empty.", nameof(lessonId));
+        if (moduleId == Guid.Empty)
+            throw new ArgumentException("moduleId cannot be empty.", nameof(moduleId));
 
         if (score < 0 || score > 100)
             throw new ArgumentException("Score must be between 0 and 100.", nameof(score));
 
-        LessonId = lessonId;
+        ModuleId = moduleId;
         Score = score;
     }
 
-    public Guid LessonId { get; private set; }
+    public Guid ModuleId { get; private set; }
     public int Score { get; }
     public int? ResitScore { get; private set; }
     public int FinalScore => ResitScore.HasValue && ResitScore > Score ? ResitScore.Value : Score;
