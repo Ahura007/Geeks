@@ -3,15 +3,15 @@
 public static class DataGridViewExtension
 {
     public static string Select = nameof(Select);
-    public static string AddClassToStudent = nameof(AddClassToStudent);
-    public static string GetClassByStudent = nameof(GetClassByStudent);
+    public static string AddSeminarGroupsToStudent = nameof(AddSeminarGroupsToStudent);
+    public static string GetSeminarGroupsByStudent = nameof(GetSeminarGroupsByStudent);
     public static string GetConflictByStudent = nameof(GetConflictByStudent);
-    public static string AddStudentInModule = nameof(AddStudentInModule);
+    public static string AddModuleToStudent = nameof(AddModuleToStudent);
     public static string GetModuleByStudent = nameof(GetModuleByStudent);
 
     public static void BindingSource<T>(this DataGridView dataGridView, List<T>? data)
     {
-        dataGridView.ReadOnly = true;
+    
         dataGridView.AllowUserToAddRows = false;
         dataGridView.AutoGenerateColumns = false;
         dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;

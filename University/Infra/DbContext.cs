@@ -1,21 +1,30 @@
-﻿using University.Domain.Modules.Aggregate;
+﻿using University.Application.SeminarGroups.Query.CommonResult;
+using University.Application.Students.Query.CommonResult;
+using University.Domain.Employees.Aggregate;
+using University.Domain.Modules.Aggregate;
 using University.Domain.SeminarGroups.Aggregate;
 using University.Domain.Students.Aggregate;
 using University.Infra.Core.Enum;
 
 namespace University.Infra;
 
-/// <summary>
-///     InMemoryDbContext
-/// </summary>
-internal class DbContext
+ 
+public  class DbContext
 {
-    public static List<Student> Students { get; set; } = [];
-    public static List<Module> Modules { get; set; } = [];
-    public static List<SeminarGroup> SeminarGroups { get; set; } = [];
+    internal static List<Student> Students { get; set; } = [];
+    internal static List<Module> Modules { get; set; } = [];
+    internal static List<SeminarGroup> SeminarGroups { get; set; } = [];
+    internal static List<Employee> Employees { get; set; } = [];
+
 
     public static void SeedData()
     {
+        var emp1 = Employee.Create("کارمند یک");
+        var emp2 = Employee.Create("کارمند دو");
+        Employees.Add(emp1);
+        Employees.Add(emp2);
+ 
+
         var s1 = Student.Create("علی رضایی");
         var s2 = Student.Create("یوسف مرادی");
         Students.Add(Student.Create("هادی زمانی"));
@@ -24,9 +33,9 @@ internal class DbContext
         Students.Add(s1);
         Students.Add(s2);
 
-        Modules.Add(Module.Create("ریاضی مهندسی"));
-        Modules.Add(Module.Create("علوم"));
-        Modules.Add(Module.Create("ستاره شناسی پیشرفته"));
+        Modules.Add(Module.Create("A - 10","ریاضی مهندسی",10, emp1.Id));
+        Modules.Add(Module.Create("B - 11","مبانی زمین شناسی",10, emp1.Id));
+        Modules.Add(Module.Create("C - 12","مکانیک",10, emp1.Id));
 
 
         var c1 = SeminarGroup.Create(
@@ -59,4 +68,7 @@ internal class DbContext
 
         s2.AddClassToStudent(c2.Id); // انتساب کلاس دوم به دانش اموز یوسف مرادی
     }
+
 }
+
+ 

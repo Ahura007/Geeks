@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Application\Employees\Query\GetEmployee\" />
 	  <Folder Include="Application\SeminarGroups\Command\" />
 	</ItemGroup>
 

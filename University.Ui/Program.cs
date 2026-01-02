@@ -1,3 +1,4 @@
+using University.Infra;
 using University.Infra.Core.Const;
 
 namespace University.Ui;
@@ -13,7 +14,7 @@ internal static class Program
         System.Windows.Forms.Application.EnableVisualStyles();
         System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-
+        DbContext.SeedData();
         System.Windows.Forms.Application.Run(new Main());
     }
 

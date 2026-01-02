@@ -1,4 +1,5 @@
-﻿using University.Domain.Students.Entity;
+﻿using University.Domain.Modules.Aggregate;
+using University.Domain.Students.Entity;
 using University.Infra.Core.Enum;
 using University.Infra.Domain;
 
@@ -21,6 +22,7 @@ internal class Student : AggregateRoot<Guid>
     public IReadOnlyCollection<StudentClass> StudentClass => _studentClass;
     public IReadOnlyCollection<StudentConflict> StudentConflict => _studentConflict;
     public IReadOnlyCollection<StudentModule> StudentModule => _studentModule;
+ 
 
     public static Student Create(string fullName)
     {

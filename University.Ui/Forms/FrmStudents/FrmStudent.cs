@@ -48,13 +48,13 @@ public partial class FrmStudent : Form
     {
         var data = new GetStudentQueryHandler().Handle(new GetStudentQuery());
         dataGridView1.BindingSource(data.Data);
-        dataGridView1.Columns.CreateTextBoxColumn("Id", "", false);
-        dataGridView1.Columns.CreateTextBoxColumn("FullName", "نام  ");
-        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddClassToStudent, "انتخاب کلاس");
-        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetClassByStudent, "کلاس های انتخاب شده");
+        dataGridView1.Columns.CreateTextBoxColumn("StudentId", "", false);
+        dataGridView1.Columns.CreateTextBoxColumn("StudentName", "نام  ");
+        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddSeminarGroupsToStudent, "انتخاب کلاس");
+        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetSeminarGroupsByStudent, "کلاس های انتخاب شده");
         dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetConflictByStudent,
             "تاریخچه تداخل انتخاب دروس");
-        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddStudentInModule, "انتخاب درس");
+        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddModuleToStudent, "انتخاب درس");
         dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetModuleByStudent, "دروس انتخاب شد");
     }
 
@@ -64,16 +64,16 @@ public partial class FrmStudent : Form
         var id = dataGridView1.GetRowData<Guid>(e, 0);
         var name = dataGridView1.GetRowData<string>(e, 1);
 
-        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.AddClassToStudent]!.Index)
+        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.AddSeminarGroupsToStudent]!.Index)
             new FrmAddSeminarGroupToStudent(id, name).ShowDialog();
 
-        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.GetClassByStudent]!.Index)
+        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.GetSeminarGroupsByStudent]!.Index)
             new FrmGetSeminarGroupByStudent(id, name).ShowDialog();
 
         if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.GetConflictByStudent]!.Index)
             new GetConflictByStudent(id, name).ShowDialog();
 
-        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.AddStudentInModule]!.Index)
+        if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.AddModuleToStudent]!.Index)
             new FrmAddModuleToStudent(id, name).ShowDialog();
 
         if (e.ColumnIndex == dataGridView1.Columns[DataGridViewExtension.GetModuleByStudent]!.Index)
