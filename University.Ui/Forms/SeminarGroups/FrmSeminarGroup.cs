@@ -1,5 +1,8 @@
 ﻿using University.Application.Modules.Query.GetModules;
+using University.Application.SeminarGroups.Command.Create;
 using University.Application.SeminarGroups.Query.GetSeminarGroup;
+using University.Infra.Application;
+using University.Infra.Core.Const;
 using University.Infra.Core.Enum;
 using University.Ui.Extension;
 
@@ -12,13 +15,24 @@ public partial class FrmSeminarGroup : Form
         InitializeComponent();
         GetClassType();
         GetModule();
-        GetData();
+        LoadSeminarGroupsGrid();
+        GetDayOfWeek();
+    }
+
+    private void GetDayOfWeek()
+    {
+        var data = Enum.GetValues(typeof(DayOfWeek))
+            .Cast<Enum>()
+            .FirstOrDefault()!
+            .ToEnumModelList<DayOfWeek, byte>();
+
+        cmbDayOfWeek.BindData(data, "Title", "Id");
     }
 
     private void GetModule()
     {
         var data = new GetModuleQueryHandler().Handle(new GetModuleQuery());
-        ComModule.BindData(data.Data, "Title", "Id");
+        cmbModule.BindData(data.Data, "ModuleName", "ModuleId");
     }
 
     private void GetClassType()
@@ -28,62 +42,138 @@ public partial class FrmSeminarGroup : Form
             .FirstOrDefault()!
             .ToEnumModelList<SeminarGroupType, byte>();
 
-        ComClassType.BindData(data, "Title", "Id");
+        cmbClassType.BindData(data, "Title", "Id");
     }
 
-    private void ComClassType_SelectedIndexChanged(object sender, EventArgs e)
+
+    private void ClearForm()
     {
-        var classType = (SeminarGroupType)ComClassType.GetSelectedValue<byte>();
-        if (classType == SeminarGroupType.FaceToFace)
-            textBox1.PlaceholderText = "کلاس حضوری";
-        else
-            textBox1.PlaceholderText = "لینک";
+        cmbModule.SelectedIndex = -1;
+        cmbDayOfWeek.SelectedIndex = -1;
+        dtpStartTime.Value = DateTime.Today.AddHours(8);
+        dtpEndTime.Value = DateTime.Today.AddHours(10);
+        nudCapacity.Value = 30;
+        cmbClassType.SelectedIndex = -1;
+        txtLocation.Clear();
+        errorProvider1.Clear();
+        cmbModule.Focus();
     }
 
-    private void GetData()
+    private void LoadSeminarGroupsGrid()
     {
         var data = new GetSeminarGroupQueryHandler().Handle(new GetSeminarGroupQuery());
-        dataGridView1.BindingSource(data.Data);
-        dataGridView1.Columns.CreateTextBoxColumn("ModuleId", "", false);
-        dataGridView1.Columns.CreateTextBoxColumn("SeminarGroupId", "", false);
-        dataGridView1.Columns.CreateTextBoxColumn("ModuleName", "نام درس");
-        dataGridView1.Columns.CreateTextBoxColumn("SeminarGroupType", "نوع کلاس");
-        dataGridView1.Columns.CreateTextBoxColumn("LocationOrLink", "محل برگزاری");
-        dataGridView1.Columns.CreateTextBoxColumn("Capacity", "ظرفیت");
-        dataGridView1.Columns.CreateTextBoxColumn("StartTimeUtc", "شروع");
-        dataGridView1.Columns.CreateTextBoxColumn("EndTimeUtc", "پایان");
+        dataGridViewSeminarGroups.BindingSource(data.Data);
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("ModuleId", "", false);
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("SeminarGroupId", "", false);
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("ModuleName", "نام درس");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("SeminarGroupType", "نوع کلاس");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("DayOfWeek", "روز هفته");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("LocationOrLink", "محل برگزاری");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("Capacity", "ظرفیت");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("StartTime", "شروع");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("EndTime", "پایان");
     }
 
-    private void button1_Click(object sender, EventArgs e)
+
+    private void btnRegister_Click(object sender, EventArgs e)
     {
-        var capacity = textBox3.ShortValue();
-        var classType = ComClassType.GetSelectedValue<SeminarGroupType>();
+        errorProvider1.Clear();
 
-        var moduleId = ComModule.GetSelectedValue<Guid>();
-        var modules = new GetModuleQueryHandler().Handle(new GetModuleQuery());
-        if (modules.Data.All(x => x.ModuleId != moduleId))
-            throw new Exception("درس انتخابی معتبر نمیباشد");
+        if (cmbModule.SelectedIndex == -1)
+        {
+            errorProvider1.SetError(cmbModule, "لطفاً ماژول را انتخاب کنید.");
+            MessageBox.Show("ماژول را انتخاب کنید.", Const.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cmbModule.Focus();
+            return;
+        }
 
-        if (string.IsNullOrEmpty(textBox1.Text)) throw new Exception(textBox1.PlaceholderText + "$نمتواند خالی باشد");
+        if (cmbDayOfWeek.SelectedIndex == -1)
+        {
+            errorProvider1.SetError(cmbDayOfWeek, "روز هفته را انتخاب کنید.");
+            MessageBox.Show("روز هفته را انتخاب کنید.", Const.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cmbDayOfWeek.Focus();
+            return;
+        }
 
-        var startUtc = new DateTimeOffset(dateTimePicker1.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker1.Value))
-            .ToUniversalTime();
-        var endUtc = new DateTimeOffset(dateTimePicker2.Value, TimeZoneInfo.Local.GetUtcOffset(dateTimePicker2.Value))
-            .ToUniversalTime();
+        if (cmbClassType.SelectedIndex == -1)
+        {
+            errorProvider1.SetError(cmbClassType, "نوع کلاس را انتخاب کنید.");
+            MessageBox.Show("نوع کلاس را انتخاب کنید.", Const.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cmbClassType.Focus();
+            return;
+        }
 
-        if (startUtc <= DateTimeOffset.UtcNow)
-            throw new InvalidOperationException("زمان شروع کلاس باید در آینده باشد.");
+        if (string.IsNullOrWhiteSpace(txtLocation.Text))
+        {
+            errorProvider1.SetError(txtLocation, "محل یا لینک کلاس نمی‌تواند خالی باشد.");
+            MessageBox.Show("محل یا لینک کلاس را وارد کنید.", Const.Warning, MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            txtLocation.Focus();
+            return;
+        }
 
-        if (endUtc <= startUtc) throw new InvalidOperationException("زمان پایان کلاس باید بعد از زمان شروع باشد.");
+        if (nudCapacity.Value <= 0)
+        {
+            errorProvider1.SetError(nudCapacity, "ظرفیت باید بزرگ‌تر از صفر باشد.");
+            MessageBox.Show("ظرفیت معتبر وارد کنید.", Const.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            nudCapacity.Focus();
+            return;
+        }
 
-        //var hasConflict = DbContext.SeminarGroups.Any(c => startUtc < c.EndTimeUtc && endUtc > c.StartTimeUtc);
-        //if (hasConflict) throw new InvalidOperationException("این بازه زمانی با کلاس دیگری تداخل دارد.");
+        var moduleId = cmbModule.GetSelectedValue<Guid>();
+        var dayOfWeek = cmbDayOfWeek.GetSelectedValue<DayOfWeek>();
+        var seminarGroupType = cmbClassType.GetSelectedValue<SeminarGroupType>();
+        var locationOrLink = txtLocation.Text.Trim();
+        var startTime = dtpStartTime.Value.TimeOfDay;
+        var endTime = dtpEndTime.Value.TimeOfDay;
+        var capacity = (short)nudCapacity.Value;
+
+        if (string.IsNullOrEmpty(locationOrLink))
+            throw new Exception(txtLocation.PlaceholderText + "$نمتواند خالی باشد");
+
+        if (endTime <= startTime)
+        {
+            errorProvider1.SetError(dtpEndTime, "زمان پایان باید بعد از زمان شروع باشد.");
+            MessageBox.Show("زمان پایان کلاس باید بعد از زمان شروع باشد.", Const.Warning, MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            dtpEndTime.Focus();
+            return;
+        }
 
 
-        //var @class = SeminarGroup.Create(moduleId, startUtc, endUtc, capacity, classType, textBox1.Text);
-        //DbContext.SeminarGroups.Add(@class);
+        if (seminarGroupType == SeminarGroupType.Virtual)
+            if (!Uri.TryCreate(locationOrLink, UriKind.Absolute, out var uriResult) ||
+                (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            {
+                errorProvider1.SetError(txtLocation, "برای کلاس مجازی، لینک معتبر (http/https) وارد کنید.");
+                MessageBox.Show("لینک کلاس مجازی معتبر نیست.", Const.Warning, MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtLocation.Focus();
+                return;
+            }
 
+        var result = new CreateSeminarGroupCommandHandler().Handle(new CreateSeminarGroupCommand
+        {
+            ModuleId = moduleId,
+            DayOfWeek = dayOfWeek,
+            StartTime = startTime,
+            EndTime = endTime,
+            Capacity = capacity,
+            SeminarGroupType = seminarGroupType,
+            LocationOrLink = locationOrLink
+        });
 
-        GetData();
+        if (result.State == ApplicationServiceState.Ok)
+        {
+            MessageBox.Show(
+                $"گروه سمینار برای ماژول «{cmbModule.Text}» در روز {dayOfWeek} از {startTime} تا {endTime} با موفقیت ثبت شد.",
+                "ثبت موفق", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearForm();
+            LoadSeminarGroupsGrid();
+        }
+        else
+        {
+            MessageBox.Show(result.Message, Const.Error, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

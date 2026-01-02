@@ -51,7 +51,8 @@ public partial class FrmStudent : Form
         dataGridView1.Columns.CreateTextBoxColumn("StudentId", "", false);
         dataGridView1.Columns.CreateTextBoxColumn("StudentName", "نام  ");
         dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddSeminarGroupsToStudent, "انتخاب کلاس");
-        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetSeminarGroupsByStudent, "کلاس های انتخاب شده");
+        dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetSeminarGroupsByStudent,
+            "کلاس های انتخاب شده");
         dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.GetConflictByStudent,
             "تاریخچه تداخل انتخاب دروس");
         dataGridView1.Columns.CreateButtonColumn(DataGridViewExtension.AddModuleToStudent, "انتخاب درس");

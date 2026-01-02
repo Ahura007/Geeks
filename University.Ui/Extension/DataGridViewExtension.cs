@@ -11,7 +11,6 @@ public static class DataGridViewExtension
 
     public static void BindingSource<T>(this DataGridView dataGridView, List<T>? data)
     {
-    
         dataGridView.AllowUserToAddRows = false;
         dataGridView.AutoGenerateColumns = false;
         dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;

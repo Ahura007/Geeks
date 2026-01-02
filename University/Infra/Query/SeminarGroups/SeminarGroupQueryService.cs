@@ -19,7 +19,8 @@ internal sealed class SeminarGroupQueryService
                 EndTime = c.EndTime,
                 LocationOrLink = c.LocationOrLink,
                 SeminarGroupType = c.SeminarGroupType,
-                Capacity = c.Capacity
+                Capacity = c.Capacity,
+                DayOfWeek = c.DayOfWeek
             }).ToList();
     }
 
@@ -38,7 +39,8 @@ internal sealed class SeminarGroupQueryService
                 EndTime = c.EndTime,
                 LocationOrLink = c.LocationOrLink,
                 SeminarGroupType = c.SeminarGroupType,
-                Capacity = c.Capacity
+                Capacity = c.Capacity,
+                DayOfWeek = c.DayOfWeek
             }).ToList();
     }
 }

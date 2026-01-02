@@ -4,11 +4,11 @@ namespace University.Domain.Employees.Aggregate;
 
 internal class Employee : AggregateRoot<Guid>
 {
-    public string FullName { get; private set; }
-
     private Employee()
     {
     }
+
+    public string FullName { get; private set; }
 
     public static Employee Create(string fullName)
     {

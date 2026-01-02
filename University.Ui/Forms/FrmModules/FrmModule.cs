@@ -1,8 +1,5 @@
-﻿
-using System.Reflection;
-using University.Application.Employees.Query.GetEmployee;
+﻿using University.Application.Employees.Query.GetEmployee;
 using University.Application.Modules.Command.Create;
-using University.Application.Modules.Query.CommonResult;
 using University.Application.Modules.Query.GetModules;
 using University.Infra.Application;
 using University.Infra.Core.Const;
@@ -72,11 +69,11 @@ public partial class FrmModule : Form
         if (cmbResponsibleStaff.SelectedIndex == -1)
         {
             errorProvider1.SetError(cmbResponsibleStaff, "لطفاً استاد مسئول را انتخاب کنید.");
-            MessageBox.Show("استاد مسئول ماژول را انتخاب کنید.", Const.Warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("استاد مسئول ماژول را انتخاب کنید.", Const.Warning, MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
             cmbResponsibleStaff.Focus();
             return;
         }
-
 
 
         var result = new CreateModuleCommandHandler().Handle(new CreateModuleCommand

@@ -22,186 +22,408 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            button1 = new Button();
-            label2 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            label1 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            textBox3 = new TextBox();
-            ComClassType = new ComboBox();
-            textBox1 = new TextBox();
-            ComModule = new ComboBox();
-            groupBox2 = new GroupBox();
-            dataGridView1 = new DataGridView();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            components = new System.ComponentModel.Container();
+            toolStripMain = new ToolStrip();
+            toolStripBtnRefresh = new ToolStripButton();
+            pnlMain = new Panel();
+            pnlGrid = new Panel();
+            dataGridViewSeminarGroups = new DataGridView();
+            pnlForm = new Panel();
+            flowButtons = new FlowLayoutPanel();
+            btnClear = new Button();
+            btnRegister = new Button();
+            tableLayoutMain = new TableLayoutPanel();
+            lblModule = new Label();
+            cmbModule = new ComboBox();
+            lblDayOfWeek = new Label();
+            cmbDayOfWeek = new ComboBox();
+            lblStartTime = new Label();
+            dtpStartTime = new DateTimePicker();
+            lblEndTime = new Label();
+            dtpEndTime = new DateTimePicker();
+            lblCapacity = new Label();
+            nudCapacity = new NumericUpDown();
+            lblClassType = new Label();
+            cmbClassType = new ComboBox();
+            lblLocation = new Label();
+            txtLocation = new TextBox();
+            errorProvider1 = new ErrorProvider(components);
+            toolStripMain.SuspendLayout();
+            pnlMain.SuspendLayout();
+            pnlGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSeminarGroups).BeginInit();
+            pnlForm.SuspendLayout();
+            flowButtons.SuspendLayout();
+            tableLayoutMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCapacity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // groupBox1
+            // toolStripMain
             // 
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(dateTimePicker2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(ComClassType);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(ComModule);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(959, 125);
-            groupBox1.TabIndex = 4;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "ثبت  درس جدید";
+            toolStripMain.Items.AddRange(new ToolStripItem[] { toolStripBtnRefresh });
+            toolStripMain.Location = new Point(0, 0);
+            toolStripMain.Name = "toolStripMain";
+            toolStripMain.RightToLeft = RightToLeft.Yes;
+            toolStripMain.Size = new Size(1100, 25);
+            toolStripMain.TabIndex = 0;
             // 
-            // button1
+            // toolStripBtnRefresh
             // 
-            button1.Location = new Point(12, 80);
-            button1.Name = "button1";
-            button1.Size = new Size(931, 29);
-            button1.TabIndex = 1;
-            button1.Text = "ثبت کلاس جدید";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            toolStripBtnRefresh.Name = "toolStripBtnRefresh";
+            toolStripBtnRefresh.Size = new Size(92, 22);
+            toolStripBtnRefresh.Text = "بروزرسانی لیست";
             // 
-            // label2
+            // pnlMain
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(139, 54);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 15);
-            label2.TabIndex = 10;
-            label2.Text = "پایان کلاس";
+            pnlMain.Controls.Add(pnlGrid);
+            pnlMain.Controls.Add(pnlForm);
+            pnlMain.Dock = DockStyle.Fill;
+            pnlMain.Location = new Point(0, 25);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Padding = new Padding(20);
+            pnlMain.RightToLeft = RightToLeft.Yes;
+            pnlMain.Size = new Size(1100, 725);
+            pnlMain.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // pnlGrid
             // 
-            dateTimePicker2.CustomFormat = "yyyy/MM/dd HH:mm";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(12, 51);
-            dateTimePicker2.MinDate = new DateTime(2025, 12, 31, 8, 21, 26, 335);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.ShowUpDown = true;
-            dateTimePicker2.Size = new Size(121, 23);
-            dateTimePicker2.TabIndex = 9;
-            dateTimePicker2.Value = new DateTime(2025, 12, 31, 8, 21, 26, 335);
+            pnlGrid.Controls.Add(dataGridViewSeminarGroups);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Location = new Point(20, 485);
+            pnlGrid.Name = "pnlGrid";
+            pnlGrid.Padding = new Padding(0, 20, 0, 20);
+            pnlGrid.Size = new Size(1060, 220);
+            pnlGrid.TabIndex = 0;
             // 
-            // label1
+            // dataGridViewSeminarGroups
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(139, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 15);
-            label1.TabIndex = 8;
-            label1.Text = "شروع کلاس";
+            dataGridViewSeminarGroups.AllowUserToAddRows = false;
+            dataGridViewSeminarGroups.AllowUserToDeleteRows = false;
+            dataGridViewSeminarGroups.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewSeminarGroups.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewSeminarGroups.Dock = DockStyle.Fill;
+            dataGridViewSeminarGroups.Location = new Point(0, 20);
+            dataGridViewSeminarGroups.MultiSelect = false;
+            dataGridViewSeminarGroups.Name = "dataGridViewSeminarGroups";
+            dataGridViewSeminarGroups.ReadOnly = true;
+            dataGridViewSeminarGroups.RightToLeft = RightToLeft.Yes;
+            dataGridViewSeminarGroups.RowHeadersWidth = 60;
+            dataGridViewSeminarGroups.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSeminarGroups.Size = new Size(1060, 180);
+            dataGridViewSeminarGroups.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // pnlForm
             // 
-            dateTimePicker1.CustomFormat = "yyyy/MM/dd HH:mm";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(12, 22);
-            dateTimePicker1.MinDate = new DateTime(2025, 12, 31, 8, 21, 26, 335);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.ShowUpDown = true;
-            dateTimePicker1.Size = new Size(121, 23);
-            dateTimePicker1.TabIndex = 7;
-            dateTimePicker1.Value = new DateTime(2025, 12, 31, 8, 21, 26, 335);
+            pnlForm.AutoSize = true;
+            pnlForm.Controls.Add(flowButtons);
+            pnlForm.Controls.Add(tableLayoutMain);
+            pnlForm.Dock = DockStyle.Top;
+            pnlForm.Location = new Point(20, 20);
+            pnlForm.Name = "pnlForm";
+            pnlForm.Padding = new Padding(0, 0, 0, 30);
+            pnlForm.RightToLeft = RightToLeft.Yes;
+            pnlForm.Size = new Size(1060, 465);
+            pnlForm.TabIndex = 1;
             // 
-            // textBox3
+            // flowButtons
             // 
-            textBox3.Location = new Point(578, 22);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "ظرفیت کلاس";
-            textBox3.Size = new Size(179, 23);
-            textBox3.TabIndex = 6;
+            flowButtons.AutoSize = true;
+            flowButtons.Controls.Add(btnClear);
+            flowButtons.Controls.Add(btnRegister);
+            flowButtons.Dock = DockStyle.Top;
+            flowButtons.FlowDirection = FlowDirection.RightToLeft;
+            flowButtons.Location = new Point(0, 370);
+            flowButtons.Name = "flowButtons";
+            flowButtons.Padding = new Padding(0, 20, 30, 0);
+            flowButtons.Size = new Size(1060, 65);
+            flowButtons.TabIndex = 0;
             // 
-            // ComClassType
+            // btnClear
             // 
-            ComClassType.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComClassType.FormattingEnabled = true;
-            ComClassType.Location = new Point(208, 22);
-            ComClassType.Name = "ComClassType";
-            ComClassType.Size = new Size(365, 23);
-            ComClassType.TabIndex = 5;
-            ComClassType.SelectedIndexChanged += ComClassType_SelectedIndexChanged;
+            btnClear.Font = new Font("Tahoma", 9.5F);
+            btnClear.Location = new Point(0, 20);
+            btnClear.Margin = new Padding(15, 0, 0, 0);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(150, 45);
+            btnClear.TabIndex = 0;
+            btnClear.Text = "پاک کردن فرم";
             // 
-            // textBox1
+            // btnRegister
             // 
-            textBox1.Location = new Point(208, 51);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(365, 23);
-            textBox1.TabIndex = 4;
+            btnRegister.Font = new Font("Tahoma", 9.5F);
+            btnRegister.Location = new Point(180, 20);
+            btnRegister.Margin = new Padding(15, 0, 15, 0);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(150, 45);
+            btnRegister.TabIndex = 1;
+            btnRegister.Text = "ثبت گروه سمینار";
+            btnRegister.Click += btnRegister_Click;
             // 
-            // ComModule
+            // tableLayoutMain
             // 
-            ComModule.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComModule.FormattingEnabled = true;
-            ComModule.Location = new Point(763, 22);
-            ComModule.Name = "ComModule";
-            ComModule.Size = new Size(180, 23);
-            ComModule.TabIndex = 3;
+            tableLayoutMain.AutoSize = true;
+            tableLayoutMain.ColumnCount = 2;
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutMain.Controls.Add(lblModule, 0, 0);
+            tableLayoutMain.Controls.Add(cmbModule, 1, 0);
+            tableLayoutMain.Controls.Add(lblDayOfWeek, 0, 1);
+            tableLayoutMain.Controls.Add(cmbDayOfWeek, 1, 1);
+            tableLayoutMain.Controls.Add(lblStartTime, 0, 2);
+            tableLayoutMain.Controls.Add(dtpStartTime, 1, 2);
+            tableLayoutMain.Controls.Add(lblEndTime, 0, 3);
+            tableLayoutMain.Controls.Add(dtpEndTime, 1, 3);
+            tableLayoutMain.Controls.Add(lblCapacity, 0, 4);
+            tableLayoutMain.Controls.Add(nudCapacity, 1, 4);
+            tableLayoutMain.Controls.Add(lblClassType, 0, 5);
+            tableLayoutMain.Controls.Add(cmbClassType, 1, 5);
+            tableLayoutMain.Controls.Add(lblLocation, 0, 6);
+            tableLayoutMain.Controls.Add(txtLocation, 1, 6);
+            tableLayoutMain.Dock = DockStyle.Top;
+            tableLayoutMain.Location = new Point(0, 0);
+            tableLayoutMain.Name = "tableLayoutMain";
+            tableLayoutMain.Padding = new Padding(10, 10, 30, 10);
+            tableLayoutMain.RightToLeft = RightToLeft.Yes;
+            tableLayoutMain.RowCount = 7;
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMain.Size = new Size(1060, 370);
+            tableLayoutMain.TabIndex = 1;
             // 
-            // groupBox2
+            // lblModule
             // 
-            groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(0, 131);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(959, 319);
-            groupBox2.TabIndex = 5;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "لیست کلاس";
+            lblModule.Anchor = AnchorStyles.Right;
+            lblModule.AutoSize = true;
+            lblModule.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblModule.Location = new Point(912, 27);
+            lblModule.Name = "lblModule";
+            lblModule.Size = new Size(47, 16);
+            lblModule.TabIndex = 0;
+            lblModule.Text = "ماژول:";
+            lblModule.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // dataGridView1
+            // cmbModule
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(953, 297);
-            dataGridView1.TabIndex = 0;
+            cmbModule.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbModule.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbModule.Font = new Font("Tahoma", 9.5F);
+            cmbModule.Location = new Point(13, 23);
+            cmbModule.Name = "cmbModule";
+            cmbModule.Size = new Size(893, 24);
+            cmbModule.TabIndex = 1;
+            // 
+            // lblDayOfWeek
+            // 
+            lblDayOfWeek.Anchor = AnchorStyles.Right;
+            lblDayOfWeek.AutoSize = true;
+            lblDayOfWeek.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblDayOfWeek.Location = new Point(912, 77);
+            lblDayOfWeek.Name = "lblDayOfWeek";
+            lblDayOfWeek.Size = new Size(66, 16);
+            lblDayOfWeek.TabIndex = 2;
+            lblDayOfWeek.Text = "روز هفته:";
+            lblDayOfWeek.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // cmbDayOfWeek
+            // 
+            cmbDayOfWeek.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbDayOfWeek.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDayOfWeek.Font = new Font("Tahoma", 9.5F);
+            cmbDayOfWeek.Location = new Point(13, 73);
+            cmbDayOfWeek.Name = "cmbDayOfWeek";
+            cmbDayOfWeek.Size = new Size(893, 24);
+            cmbDayOfWeek.TabIndex = 3;
+            // 
+            // lblStartTime
+            // 
+            lblStartTime.Anchor = AnchorStyles.Right;
+            lblStartTime.AutoSize = true;
+            lblStartTime.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblStartTime.Location = new Point(912, 127);
+            lblStartTime.Name = "lblStartTime";
+            lblStartTime.Size = new Size(93, 16);
+            lblStartTime.TabIndex = 4;
+            lblStartTime.Text = "ساعت شروع:";
+            lblStartTime.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // dtpStartTime
+            // 
+            dtpStartTime.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dtpStartTime.Font = new Font("Tahoma", 9.5F);
+            dtpStartTime.Format = DateTimePickerFormat.Time;
+            dtpStartTime.Location = new Point(13, 123);
+            dtpStartTime.Name = "dtpStartTime";
+            dtpStartTime.ShowUpDown = true;
+            dtpStartTime.Size = new Size(893, 23);
+            dtpStartTime.TabIndex = 5;
+            // 
+            // lblEndTime
+            // 
+            lblEndTime.Anchor = AnchorStyles.Right;
+            lblEndTime.AutoSize = true;
+            lblEndTime.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblEndTime.Location = new Point(912, 177);
+            lblEndTime.Name = "lblEndTime";
+            lblEndTime.Size = new Size(82, 16);
+            lblEndTime.TabIndex = 6;
+            lblEndTime.Text = "ساعت پایان:";
+            lblEndTime.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // dtpEndTime
+            // 
+            dtpEndTime.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dtpEndTime.Font = new Font("Tahoma", 9.5F);
+            dtpEndTime.Format = DateTimePickerFormat.Time;
+            dtpEndTime.Location = new Point(13, 173);
+            dtpEndTime.Name = "dtpEndTime";
+            dtpEndTime.ShowUpDown = true;
+            dtpEndTime.Size = new Size(893, 23);
+            dtpEndTime.TabIndex = 7;
+            // 
+            // lblCapacity
+            // 
+            lblCapacity.Anchor = AnchorStyles.Right;
+            lblCapacity.AutoSize = true;
+            lblCapacity.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblCapacity.Location = new Point(912, 227);
+            lblCapacity.Name = "lblCapacity";
+            lblCapacity.Size = new Size(88, 16);
+            lblCapacity.TabIndex = 8;
+            lblCapacity.Text = "ظرفیت گروه:";
+            lblCapacity.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // nudCapacity
+            // 
+            nudCapacity.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            nudCapacity.Font = new Font("Tahoma", 9.5F);
+            nudCapacity.Location = new Point(13, 223);
+            nudCapacity.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
+            nudCapacity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCapacity.Name = "nudCapacity";
+            nudCapacity.Size = new Size(893, 23);
+            nudCapacity.TabIndex = 9;
+            nudCapacity.TextAlign = HorizontalAlignment.Center;
+            nudCapacity.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            // 
+            // lblClassType
+            // 
+            lblClassType.Anchor = AnchorStyles.Right;
+            lblClassType.AutoSize = true;
+            lblClassType.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblClassType.Location = new Point(912, 277);
+            lblClassType.Name = "lblClassType";
+            lblClassType.Size = new Size(70, 16);
+            lblClassType.TabIndex = 10;
+            lblClassType.Text = "نوع کلاس:";
+            lblClassType.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // cmbClassType
+            // 
+            cmbClassType.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cmbClassType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbClassType.Font = new Font("Tahoma", 9.5F);
+            cmbClassType.Location = new Point(13, 273);
+            cmbClassType.Name = "cmbClassType";
+            cmbClassType.Size = new Size(893, 24);
+            cmbClassType.TabIndex = 11;
+            // 
+            // lblLocation
+            // 
+            lblLocation.Anchor = AnchorStyles.Right;
+            lblLocation.AutoSize = true;
+            lblLocation.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblLocation.Location = new Point(912, 327);
+            lblLocation.Name = "lblLocation";
+            lblLocation.Size = new Size(115, 16);
+            lblLocation.TabIndex = 12;
+            lblLocation.Text = "محل/لینک کلاس:";
+            lblLocation.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // txtLocation
+            // 
+            txtLocation.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtLocation.Font = new Font("Tahoma", 9.5F);
+            txtLocation.Location = new Point(13, 323);
+            txtLocation.Name = "txtLocation";
+            txtLocation.PlaceholderText = "اتاق  یا لینک زوم";
+            txtLocation.Size = new Size(893, 23);
+            txtLocation.TabIndex = 13;
+            txtLocation.TextAlign = HorizontalAlignment.Right;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // FrmSeminarGroup
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(959, 450);
-            Controls.Add(groupBox1);
-            Controls.Add(groupBox2);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            ClientSize = new Size(1100, 750);
+            Controls.Add(pnlMain);
+            Controls.Add(toolStripMain);
+            Font = new Font("Tahoma", 9.5F);
+            MinimumSize = new Size(900, 600);
             Name = "FrmSeminarGroup";
             RightToLeft = RightToLeft.Yes;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "FrmSeminarGroup";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            RightToLeftLayout = true;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "مدیریت گروه‌های سمینار";
+            toolStripMain.ResumeLayout(false);
+            toolStripMain.PerformLayout();
+            pnlMain.ResumeLayout(false);
+            pnlMain.PerformLayout();
+            pnlGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSeminarGroups).EndInit();
+            pnlForm.ResumeLayout(false);
+            pnlForm.PerformLayout();
+            flowButtons.ResumeLayout(false);
+            tableLayoutMain.ResumeLayout(false);
+            tableLayoutMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCapacity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private GroupBox groupBox1;
-        private Button button1;
-        private GroupBox groupBox2;
-        private DataGridView dataGridView1;
-        private ComboBox ComClassType;
-        private TextBox textBox1;
-        private ComboBox ComModule;
-        private TextBox textBox3;
-        private DateTimePicker dateTimePicker1;
-        private Label label1;
-        private Label label2;
-        private DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.ToolStrip toolStripMain;
+        private System.Windows.Forms.ToolStripButton toolStripBtnRefresh;
+
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Panel pnlForm;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
+
+        private System.Windows.Forms.Label lblModule;
+        private System.Windows.Forms.ComboBox cmbModule;
+        private System.Windows.Forms.Label lblDayOfWeek;
+        private System.Windows.Forms.ComboBox cmbDayOfWeek;
+        private System.Windows.Forms.Label lblStartTime;
+        private System.Windows.Forms.DateTimePicker dtpStartTime;
+        private System.Windows.Forms.Label lblEndTime;
+        private System.Windows.Forms.DateTimePicker dtpEndTime;
+        private System.Windows.Forms.Label lblCapacity;
+        private System.Windows.Forms.NumericUpDown nudCapacity;
+        private System.Windows.Forms.Label lblClassType;
+        private System.Windows.Forms.ComboBox cmbClassType;
+        private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.TextBox txtLocation;
+
+        private System.Windows.Forms.FlowLayoutPanel flowButtons;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnRegister;
+
+        private System.Windows.Forms.Panel pnlGrid;
+        private System.Windows.Forms.DataGridView dataGridViewSeminarGroups;
+
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

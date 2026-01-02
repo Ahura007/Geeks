@@ -12,4 +12,5 @@ public sealed class SeminarGroupQr
     public string LocationOrLink { get; set; }
     public SeminarGroupType SeminarGroupType { get; set; }
     public short Capacity { get; set; }
+    public DayOfWeek DayOfWeek { get; set; }
 }
