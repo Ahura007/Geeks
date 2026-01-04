@@ -4,5 +4,7 @@ public enum ConflictType
 {
     TimeOverlap,
     CapacityFull,
-    DuplicateRegistration
+    DuplicateRegistration,
+    ModuleCapacityExceeded,
+    InvalidModule
 }

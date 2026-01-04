@@ -1,4 +1,4 @@
-﻿namespace University.Ui.Forms.SeminarGroups
+﻿namespace University.Ui.Forms.FrmSeminarGroup
 {
     partial class FrmSeminarGroup
     {

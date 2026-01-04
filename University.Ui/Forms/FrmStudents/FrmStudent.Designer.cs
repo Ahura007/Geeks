@@ -22,99 +22,203 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            groupBox2 = new GroupBox();
-            dataGridView1 = new DataGridView();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            components = new System.ComponentModel.Container();
+            pnlMain = new Panel();
+            pnlGrid = new Panel();
+            dataGridViewStudents = new DataGridView();
+            pnlForm = new Panel();
+            flowButtons = new FlowLayoutPanel();
+            btnClear = new Button();
+            btnRegister = new Button();
+            tableLayoutForm = new TableLayoutPanel();
+            lblFullName = new Label();
+            txtFullName = new TextBox();
+            errorProvider1 = new ErrorProvider(components);
+            pnlMain.SuspendLayout();
+            pnlGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStudents).BeginInit();
+            pnlForm.SuspendLayout();
+            flowButtons.SuspendLayout();
+            tableLayoutForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // groupBox1
+            // pnlMain
             // 
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(972, 100);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "ثبت نام دانش آموزان";
+            pnlMain.Controls.Add(pnlGrid);
+            pnlMain.Controls.Add(pnlForm);
+            pnlMain.Dock = DockStyle.Fill;
+            pnlMain.Location = new Point(0, 0);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Padding = new Padding(20);
+            pnlMain.RightToLeft = RightToLeft.Yes;
+            pnlMain.Size = new Size(1100, 700);
+            pnlMain.TabIndex = 0;
             // 
-            // button1
+            // pnlGrid
             // 
-            button1.Location = new Point(789, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(180, 49);
-            button1.TabIndex = 1;
-            button1.Text = "ثبت نام دانش آموز";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            pnlGrid.Controls.Add(dataGridViewStudents);
+            pnlGrid.Dock = DockStyle.Fill;
+            pnlGrid.Location = new Point(20, 205);
+            pnlGrid.Name = "pnlGrid";
+            pnlGrid.Padding = new Padding(0, 20, 0, 20);
+            pnlGrid.Size = new Size(1060, 475);
+            pnlGrid.TabIndex = 0;
             // 
-            // textBox1
+            // dataGridViewStudents
             // 
-            textBox1.Dock = DockStyle.Right;
-            textBox1.Location = new Point(790, 19);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "نام و نام خانوادگی";
-            textBox1.Size = new Size(179, 23);
-            textBox1.TabIndex = 0;
+            dataGridViewStudents.AllowUserToAddRows = false;
+            dataGridViewStudents.AllowUserToDeleteRows = false;
+            dataGridViewStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewStudents.Dock = DockStyle.Fill;
+            dataGridViewStudents.Location = new Point(0, 20);
+            dataGridViewStudents.MultiSelect = false;
+            dataGridViewStudents.Name = "dataGridViewStudents";
+            dataGridViewStudents.ReadOnly = true;
+            dataGridViewStudents.RightToLeft = RightToLeft.Yes;
+            dataGridViewStudents.RowHeadersWidth = 60;
+            dataGridViewStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewStudents.Size = new Size(1060, 435);
+            dataGridViewStudents.TabIndex = 0;
+            dataGridViewStudents.CellClick += dataGridViewStudents_CellClick;
             // 
-            // groupBox2
+            // pnlForm
             // 
-            groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(0, 106);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(972, 344);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "نمایش دانش آموزان";
+            pnlForm.AutoSize = true;
+            pnlForm.Controls.Add(flowButtons);
+            pnlForm.Controls.Add(tableLayoutForm);
+            pnlForm.Dock = DockStyle.Top;
+            pnlForm.Location = new Point(20, 20);
+            pnlForm.Name = "pnlForm";
+            pnlForm.Padding = new Padding(0, 0, 0, 30);
+            pnlForm.RightToLeft = RightToLeft.Yes;
+            pnlForm.Size = new Size(1060, 185);
+            pnlForm.TabIndex = 1;
             // 
-            // dataGridView1
+            // flowButtons
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 19);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(966, 322);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            flowButtons.AutoSize = true;
+            flowButtons.Controls.Add(btnClear);
+            flowButtons.Controls.Add(btnRegister);
+            flowButtons.Dock = DockStyle.Top;
+            flowButtons.FlowDirection = FlowDirection.RightToLeft;
+            flowButtons.Location = new Point(0, 90);
+            flowButtons.Name = "flowButtons";
+            flowButtons.Padding = new Padding(0, 20, 30, 0);
+            flowButtons.Size = new Size(1060, 65);
+            flowButtons.TabIndex = 0;
+            // 
+            // btnClear
+            // 
+            btnClear.Font = new Font("Tahoma", 9.5F);
+            btnClear.Location = new Point(0, 20);
+            btnClear.Margin = new Padding(15, 0, 0, 0);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(150, 45);
+            btnClear.TabIndex = 0;
+            btnClear.Text = "پاک کردن فرم";
+            btnClear.Click += btnClear_Click;
+            // 
+            // btnRegister
+            // 
+            btnRegister.Font = new Font("Tahoma", 9.5F);
+            btnRegister.Location = new Point(180, 20);
+            btnRegister.Margin = new Padding(15, 0, 15, 0);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(150, 45);
+            btnRegister.TabIndex = 1;
+            btnRegister.Text = "ثبت دانشجو";
+            btnRegister.Click += btnRegister_Click;
+            // 
+            // tableLayoutForm
+            // 
+            tableLayoutForm.AutoSize = true;
+            tableLayoutForm.ColumnCount = 2;
+            tableLayoutForm.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutForm.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutForm.Controls.Add(lblFullName, 0, 0);
+            tableLayoutForm.Controls.Add(txtFullName, 1, 0);
+            tableLayoutForm.Dock = DockStyle.Top;
+            tableLayoutForm.Location = new Point(0, 0);
+            tableLayoutForm.Name = "tableLayoutForm";
+            tableLayoutForm.Padding = new Padding(10, 20, 30, 10);
+            tableLayoutForm.RightToLeft = RightToLeft.Yes;
+            tableLayoutForm.RowCount = 1;
+            tableLayoutForm.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutForm.Size = new Size(1060, 90);
+            tableLayoutForm.TabIndex = 1;
+            // 
+            // lblFullName
+            // 
+            lblFullName.Anchor = AnchorStyles.Right;
+            lblFullName.AutoSize = true;
+            lblFullName.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
+            lblFullName.Location = new Point(854, 42);
+            lblFullName.Name = "lblFullName";
+            lblFullName.Size = new Size(173, 16);
+            lblFullName.TabIndex = 0;
+            lblFullName.Text = "نام و نام خانوادگی دانشجو:";
+            lblFullName.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // txtFullName
+            // 
+            txtFullName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtFullName.Font = new Font("Tahoma", 9.5F);
+            txtFullName.Location = new Point(13, 38);
+            txtFullName.Name = "txtFullName";
+            txtFullName.PlaceholderText = "مثال: علی احمدی";
+            txtFullName.Size = new Size(835, 23);
+            txtFullName.TabIndex = 1;
+            txtFullName.TextAlign = HorizontalAlignment.Right;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // FrmStudent
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(972, 450);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            ClientSize = new Size(1100, 700);
+            Controls.Add(pnlMain);
+            Font = new Font("Tahoma", 9.5F);
+            MinimumSize = new Size(900, 600);
             Name = "FrmStudent";
             RightToLeft = RightToLeft.Yes;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "FrmStudent";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            RightToLeftLayout = true;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "مدیریت دانشجویان";
+            Load += FrmStudent_Load;
+            pnlMain.ResumeLayout(false);
+            pnlMain.PerformLayout();
+            pnlGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStudents).EndInit();
+            pnlForm.ResumeLayout(false);
+            pnlForm.PerformLayout();
+            flowButtons.ResumeLayout(false);
+            tableLayoutForm.ResumeLayout(false);
+            tableLayoutForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
-        private DataGridView dataGridView1;
-        private Button button1;
-        private TextBox textBox1;
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Panel pnlForm;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutForm;
+        private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.TextBox txtFullName;
+        private System.Windows.Forms.FlowLayoutPanel flowButtons;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnRegister;
+
+        private System.Windows.Forms.Panel pnlGrid;
+        private System.Windows.Forms.DataGridView dataGridViewStudents;
+
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

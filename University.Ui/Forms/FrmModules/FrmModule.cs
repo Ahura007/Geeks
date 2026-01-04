@@ -30,7 +30,10 @@ public partial class FrmModule : Form
         dataGridViewModules.Columns.CreateTextBoxColumn("ModuleId", "شناسه", false);
         dataGridViewModules.Columns.CreateTextBoxColumn("ModuleName", "نام");
         dataGridViewModules.Columns.CreateTextBoxColumn("Code", "کد");
-        dataGridViewModules.Columns.CreateTextBoxColumn("Capacity", "ظرفیت");
+        dataGridViewModules.Columns.CreateTextBoxColumn("TotalCapacity", "ظرفیت کل");
+        dataGridViewModules.Columns.CreateTextBoxColumn("RemainingCapacity", "ظرفیت باقی مانده");
+        dataGridViewModules.Columns.CreateTextBoxColumn("UsedCapacity", "ظرفیت استفاده شده توسط دانش آموزان");
+
         dataGridViewModules.Columns.CreateTextBoxColumn("EmployeeName", "استاد مسئول");
     }
 

@@ -9,9 +9,11 @@ internal class Employee : AggregateRoot<Guid>
     }
 
     public string FullName { get; private set; }
+    public long Priority { get; private set; }
 
     public static Employee Create(string fullName)
     {
+      
         if (string.IsNullOrWhiteSpace(fullName))
             throw new ArgumentException("نام دانشجو نمی‌تواند خالی باشد.", nameof(fullName));
 
@@ -23,7 +25,8 @@ internal class Employee : AggregateRoot<Guid>
         return new Employee
         {
             FullName = fullName,
-            Id = Guid.NewGuid()
+            Id = Guid.NewGuid(),
+            Priority = DateTimeOffset.Now.ToUnixTimeMilliseconds()
         };
     }
 }

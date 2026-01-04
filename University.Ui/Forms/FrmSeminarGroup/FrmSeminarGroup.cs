@@ -6,7 +6,7 @@ using University.Infra.Core.Const;
 using University.Infra.Core.Enum;
 using University.Ui.Extension;
 
-namespace University.Ui.Forms.SeminarGroups;
+namespace University.Ui.Forms.FrmSeminarGroup;
 
 public partial class FrmSeminarGroup : Form
 {
@@ -69,7 +69,9 @@ public partial class FrmSeminarGroup : Form
         dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("SeminarGroupType", "نوع کلاس");
         dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("DayOfWeek", "روز هفته");
         dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("LocationOrLink", "محل برگزاری");
-        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("Capacity", "ظرفیت");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("ModuleCapacity", "ظرفیت کل درس");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("Capacity", "ظرفیت کلاس");
+        dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("RemainingCapacity", "ظرفیت باقی مانده کلاس");
         dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("StartTime", "شروع");
         dataGridViewSeminarGroups.Columns.CreateTextBoxColumn("EndTime", "پایان");
     }

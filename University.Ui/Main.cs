@@ -1,6 +1,6 @@
 ﻿using University.Ui.Forms.FrmModules;
+using University.Ui.Forms.FrmSeminarGroup;
 using University.Ui.Forms.FrmStudents;
-using University.Ui.Forms.SeminarGroups;
 
 namespace University.Ui;
 

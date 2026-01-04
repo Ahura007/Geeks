@@ -8,6 +8,7 @@ internal sealed class StudentModule : Entity<Guid>
     {
         StudentId = studentId;
         ModuleId = moduleId;
+        Id= Guid.NewGuid();
     }
 
     public Guid StudentId { get; private set; }

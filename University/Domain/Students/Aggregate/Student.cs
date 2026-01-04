@@ -7,9 +7,9 @@ namespace University.Domain.Students.Aggregate;
 internal class Student : AggregateRoot<Guid>
 {
     private readonly List<Grade> _grades = [];
-    private readonly HashSet<StudentClass> _studentClass = [];
-    private readonly HashSet<StudentConflict> _studentConflict = [];
-    private readonly HashSet<StudentModule> _studentModule = [];
+    private readonly List<StudentSeminarGroup> _studentSeminarGroup = [];
+    private readonly List<StudentConflict> _studentConflict = [];
+    private readonly List<StudentModule> _studentModule = [];
 
 
     private Student()
@@ -17,8 +17,10 @@ internal class Student : AggregateRoot<Guid>
     }
 
     public string FullName { get; private set; }
+    public long Priority { get; private set; }
+
     public IReadOnlyCollection<Grade> Grades => _grades;
-    public IReadOnlyCollection<StudentClass> StudentClass => _studentClass;
+    public IReadOnlyCollection<StudentSeminarGroup> StudentSeminarGroup => _studentSeminarGroup;
     public IReadOnlyCollection<StudentConflict> StudentConflict => _studentConflict;
     public IReadOnlyCollection<StudentModule> StudentModule => _studentModule;
 
@@ -36,7 +38,8 @@ internal class Student : AggregateRoot<Guid>
         return new Student
         {
             FullName = fullName,
-            Id = Guid.NewGuid()
+            Id = Guid.NewGuid(),
+            Priority = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
         };
     }
 
@@ -70,15 +73,15 @@ internal class Student : AggregateRoot<Guid>
         grade.AddResitGrade(resitGrade);
     }
 
-    public void AddClassToStudent(Guid seminarGroupId)
+    public void AddSeminarGroupToStudent(Guid seminarGroupId)
     {
         if (seminarGroupId == Guid.Empty)
             throw new ArgumentException("Invalid seminarGroupId");
 
-        if (_studentClass.Any(sc => sc.SeminarGroupId == seminarGroupId))
+        if (_studentSeminarGroup.Any(sc => sc.SeminarGroupId == seminarGroupId))
             throw new InvalidOperationException("Student already register in this class");
 
-        _studentClass.Add(new StudentClass(Id, seminarGroupId));
+        _studentSeminarGroup.Add(new StudentSeminarGroup(Id, seminarGroupId));
     }
 
     public void AddConflictToStudent(Guid seminarGroupId, ConflictType conflictType)
@@ -99,6 +102,9 @@ internal class Student : AggregateRoot<Guid>
         {
             if (moduleId == Guid.Empty)
                 throw new ArgumentException("Invalid seminarGroupId");
+
+            if(_studentModule.Any(x=>x.ModuleId == moduleId))
+                continue;
 
             _studentModule.Add(new StudentModule(Id, moduleId));
         }

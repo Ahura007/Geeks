@@ -3,15 +3,14 @@
 public static class DataGridViewExtension
 {
     public static string Select = nameof(Select);
-    public static string AddSeminarGroupsToStudent = nameof(AddSeminarGroupsToStudent);
-    public static string GetSeminarGroupsByStudent = nameof(GetSeminarGroupsByStudent);
-    public static string GetConflictByStudent = nameof(GetConflictByStudent);
-    public static string AddModuleToStudent = nameof(AddModuleToStudent);
-    public static string GetModuleByStudent = nameof(GetModuleByStudent);
+    public static string StudentModule = nameof(StudentModule);
+    public static string StudentSeminarGroup = nameof(StudentSeminarGroup);
+    public static string StudentConflict = nameof(StudentConflict);
 
     public static void BindingSource<T>(this DataGridView dataGridView, List<T>? data)
     {
         dataGridView.AllowUserToAddRows = false;
+        dataGridView.AllowUserToDeleteRows = false;
         dataGridView.AutoGenerateColumns = false;
         dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         dataGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
@@ -52,7 +51,8 @@ public static class DataGridViewExtension
             HeaderText = title,
             ReadOnly = true,
             Visible = isVisible,
-            AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+            Name = propertyName
         });
     }
 

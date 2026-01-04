@@ -1,4 +1,5 @@
-﻿using University.Domain.Employees.Aggregate;
+﻿using University.Application.Students.Query.CommonResult;
+using University.Domain.Employees.Aggregate;
 using University.Domain.Modules.Aggregate;
 using University.Domain.SeminarGroups.Aggregate;
 using University.Domain.Students.Aggregate;
@@ -13,56 +14,38 @@ public class DbContext
     internal static List<SeminarGroup> SeminarGroups { get; set; } = [];
     internal static List<Employee> Employees { get; set; } = [];
 
-
     public static void SeedData()
     {
-        var emp1 = Employee.Create("کارمند یک");
-        var emp2 = Employee.Create("کارمند دو");
-        Employees.Add(emp1);
-        Employees.Add(emp2);
+        var employee1 = Employee.Create("کارمند یک");
+        var employee2 = Employee.Create("کارمند دو");
+        var employee3 = Employee.Create("کارمند سه");
+        Employees.AddRange([employee1, employee2, employee3]);
+
+        var student1 = Student.Create("علی رضایی" );
+        var student2 = Student.Create("یوسف مرادی");
+        var student3 = Student.Create("کریم خدا یاری");
+        var student4 = Student.Create("احسان دینی");
+        var student5 = Student.Create("اشکان قدیمی");
+        Students.AddRange([student1, student2, student3, student4, student5]);
+
+        var module1 = Module.Create("A - 10", "ریاضی مهندسی", 3, employee1.Id);
+        var module2 = Module.Create("B - 11", "مبانی زمین شناسی", 4, employee1.Id);
+        var module3 = Module.Create("C - 12", "مکانیک", 4, employee2.Id);
+        var module4 = Module.Create("D - 14", "سیالات", 4, employee2.Id);
+        Modules.AddRange([module1, module2, module3, module4]);
+
+        var seminarGroup1 = SeminarGroup.Create(module1.Id, DayOfWeek.Saturday, TimeSpan.FromHours(7), TimeSpan.FromHours(8), 2, SeminarGroupType.FaceToFace, "301");
+        var seminarGroup2 = SeminarGroup.Create(module1.Id, DayOfWeek.Saturday, TimeSpan.FromHours(9), TimeSpan.FromHours(10), 1, SeminarGroupType.Virtual, "http://aaa.ir/a1");
+        var seminarGroup3 = SeminarGroup.Create(module2.Id, DayOfWeek.Saturday, TimeSpan.FromHours(9), TimeSpan.FromHours(10), 3, SeminarGroupType.Virtual, "http://bbb.ir/b1");
+        var seminarGroup4 = SeminarGroup.Create(module3.Id, DayOfWeek.Saturday, TimeSpan.FromHours(9), TimeSpan.FromHours(12), 1, SeminarGroupType.FaceToFace, "301");
+        SeminarGroups.AddRange([seminarGroup1, seminarGroup2, seminarGroup3, seminarGroup4]);
 
 
-        var s1 = Student.Create("علی رضایی");
-        var s2 = Student.Create("یوسف مرادی");
-        Students.Add(Student.Create("هادی زمانی"));
-        Students.Add(Student.Create("غلام صنعتی"));
 
-        Students.Add(s1);
-        Students.Add(s2);
+        student1.AddModulesToStudent([module1.Id]);
+        student2.AddModulesToStudent([module1.Id]);
 
-        Modules.Add(Module.Create("A - 10", "ریاضی مهندسی", 10, emp1.Id));
-        Modules.Add(Module.Create("B - 11", "مبانی زمین شناسی", 10, emp1.Id));
-        Modules.Add(Module.Create("C - 12", "مکانیک", 10, emp1.Id));
-
-
-        var c1 = SeminarGroup.Create(
-            Modules[0]!.Id, //کلاس مربوط به درس اول
-            DayOfWeek.Saturday,
-            TimeSpan.FromHours(6), // فردا از ساعت 8 صبح
-            TimeSpan.FromHours(8), // تا ساعت 10 صبح
-            2, // ظرفیت کلاس 2 نفر
-            SeminarGroupType.FaceToFace, // حضورس
-            "301");
-
-        var c2 = SeminarGroup.Create(Modules[1]!.Id, DayOfWeek.Saturday, TimeSpan.FromHours(8), TimeSpan.FromHours(10),
-            120,
-            SeminarGroupType.Virtual,
-            "https://vc.BBB.ir/b/mah-upw-4fk");
-
-        var c3 = SeminarGroup.Create(Modules[2]!.Id, DayOfWeek.Thursday, TimeSpan.FromHours(10), TimeSpan.FromHours(12),
-            1,
-            SeminarGroupType.FaceToFace,
-            "301");
-
-        SeminarGroups.Add(c1); // کلاس 301
-        SeminarGroups.Add(c2);
-        SeminarGroups.Add(c3);
-
-
-        s1.AddClassToStudent(c1.Id); // انتساب کلاس اول به دانش اموز علی رضایی
-        s1.AddClassToStudent(c2.Id); // انتساب کلاس دوم به دانش اموز علی رضایی
-
-
-        s2.AddClassToStudent(c2.Id); // انتساب کلاس دوم به دانش اموز یوسف مرادی
+        student1.AddSeminarGroupToStudent(seminarGroup1.Id);
+        student2.AddSeminarGroupToStudent(seminarGroup2.Id);
     }
 }

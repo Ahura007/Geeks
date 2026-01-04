@@ -3,11 +3,11 @@ using University.Ui.Extension;
 
 namespace University.Ui.Forms.FrmStudents;
 
-public partial class GetConflictByStudent : Form
+public partial class FrmStudentConflict : Form
 {
     private readonly Guid _id;
 
-    public GetConflictByStudent(Guid id, string name)
+    public FrmStudentConflict(Guid id, string name)
     {
         InitializeComponent();
         _id = id;

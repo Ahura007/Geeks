@@ -45,7 +45,7 @@
         // 
         // BtnModule
         // 
-        BtnModule.Location = new Point(188, 12);
+        BtnModule.Location = new Point(362, 12);
         BtnModule.Name = "BtnModule";
         BtnModule.Size = new Size(170, 59);
         BtnModule.TabIndex = 1;
@@ -55,7 +55,7 @@
         // 
         // BtnClass
         // 
-        BtnClass.Location = new Point(364, 12);
+        BtnClass.Location = new Point(188, 12);
         BtnClass.Name = "BtnClass";
         BtnClass.Size = new Size(170, 59);
         BtnClass.TabIndex = 2;

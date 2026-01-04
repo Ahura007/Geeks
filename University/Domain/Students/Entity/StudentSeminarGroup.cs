@@ -2,9 +2,9 @@
 
 namespace University.Domain.Students.Entity;
 
-internal class StudentClass : Entity<Guid>
+internal class StudentSeminarGroup : Entity<Guid>
 {
-    internal StudentClass(Guid studentId, Guid seminarGroupId)
+    internal StudentSeminarGroup(Guid studentId, Guid seminarGroupId)
     {
         if (studentId == Guid.Empty)
             throw new ArgumentException("StudentId cannot be empty.", nameof(studentId));
