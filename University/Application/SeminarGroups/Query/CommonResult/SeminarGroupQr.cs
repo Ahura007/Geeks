@@ -15,4 +15,6 @@ public sealed class SeminarGroupQr
     public DayOfWeek DayOfWeek { get; set; }
     public int RemainingCapacity { get; set; }
     public int ModuleCapacity { get; set; }
+    public int UsedCapacity { get; set; }
+    public int ModuleUsedCapacity { get; set; }
 }

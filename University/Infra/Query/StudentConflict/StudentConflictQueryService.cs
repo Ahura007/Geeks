@@ -21,8 +21,8 @@ internal sealed class StudentConflictQueryService
                 ModuleName = l.Name,
                 ConflictType = sc.ConflictType,
 
-                StartTime = c.StartTime,
-                EndTime = c.EndTime
+                StartTime = c.StartTime.ToString("hh\\:mm"),
+                EndTime = c.EndTime.ToString("hh\\:mm"),
             }).ToList();
     }
 }

@@ -18,12 +18,11 @@ internal sealed class SeminarGroupRegistrationDomainService
         conflictType = null;
 
         // تکراری بودن
-        if (currentRegisterCount > 0)
+        if (student.StudentSeminarGroup.Any(ssg => ssg.SeminarGroupId == targetSeminarGroup.Id))
         {
             conflictType = ConflictType.DuplicateRegistration;
             return false;
         }
-
         // ظرفیت گروه
         if (currentRegisterCount >= targetSeminarGroup.Capacity)
             throw new DomainConflictException(ConflictType.CapacityFull, "ظرفیت این گروه سمینار تکمیل شده است.");

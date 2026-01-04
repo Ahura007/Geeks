@@ -12,6 +12,7 @@ public static class DataGridViewExtension
         dataGridView.AllowUserToAddRows = false;
         dataGridView.AllowUserToDeleteRows = false;
         dataGridView.AutoGenerateColumns = false;
+        dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         dataGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
         dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.False;

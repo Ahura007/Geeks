@@ -1,4 +1,6 @@
-﻿using University.Domain.SeminarGroups.Aggregate;
+﻿using System;
+using System.Linq;
+using University.Domain.SeminarGroups.Aggregate;
 using University.Infra;
 using University.Infra.Application;
 using University.Infra.Core.Enum;
@@ -50,7 +52,6 @@ public sealed class CreateSeminarGroupCommandHandler
             }
         }
 
-        // گرفتن ماژول برای چک ظرفیت کل
         var module = DbContext.Modules.FirstOrDefault(m => m.Id == command.ModuleId);
         if (module == null)
             return new ApplicationServiceResult
@@ -59,12 +60,10 @@ public sealed class CreateSeminarGroupCommandHandler
                 Message = "ماژول مورد نظر یافت نشد."
             };
 
-        // مجموع ظرفیت فعلی گروه‌های سمینار این ماژول
         var currentTotalSeminarCapacity = DbContext.SeminarGroups
             .Where(sg => sg.ModuleId == command.ModuleId)
             .Sum(sg => sg.Capacity);
 
-        // مجموع ظرفیت بعد از اضافه کردن این گروه جدید
         var projectedTotalCapacity = currentTotalSeminarCapacity + command.Capacity;
 
         if (projectedTotalCapacity > module.Capacity)
@@ -82,28 +81,49 @@ public sealed class CreateSeminarGroupCommandHandler
             };
         }
 
-        // چک تداخل زمانی
-        var existingGroups = DbContext.SeminarGroups
-            .Where(sg => sg.ModuleId == command.ModuleId && sg.DayOfWeek == command.DayOfWeek)
+        // گروه‌های موجود در همان روز هفته
+        var existingGroupsInSameDay = DbContext.SeminarGroups
+            .Where(sg => sg.DayOfWeek == command.DayOfWeek)
             .ToList();
 
-        var hasTimeConflict = existingGroups.Any(sg =>
-            command.StartTime < sg.EndTime && command.EndTime > sg.StartTime);
-
-        if (hasTimeConflict)
+        foreach (var existing in existingGroupsInSameDay)
         {
-            var startStr = command.StartTime.ToString(@"hh\:mm");
-            var endStr = command.EndTime.ToString(@"hh\:mm");
+            // تداخل زمانی عمومی (روز و ساعت)
+            bool timeOverlap = command.StartTime < existing.EndTime && command.EndTime > existing.StartTime;
 
-            return new ApplicationServiceResult
+            if (timeOverlap)
             {
-                State = ApplicationServiceState.InvalidDomainState,
-                Message = $"این بازه زمانی ({startStr} تا {endStr}) در روز {command.DayOfWeek} با گروه سمینار دیگری تداخل دارد."
-            };
+                // اگر هر دو حضوری باشند و محل (شماره کلاس) یکسان باشد
+                if (command.SeminarGroupType == SeminarGroupType.FaceToFace &&
+                    existing.SeminarGroupType == SeminarGroupType.FaceToFace &&
+                    string.Equals(command.LocationOrLink.Trim(), existing.LocationOrLink.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    var startStr = command.StartTime.ToString(@"hh\:mm");
+                    var endStr = command.EndTime.ToString(@"hh\:mm");
+
+                    return new ApplicationServiceResult
+                    {
+                        State = ApplicationServiceState.InvalidDomainState,
+                        Message = $"تداخل زمانی و مکانی در روز {command.DayOfWeek} ساعت ({startStr} تا {endStr}) با گروه دیگر در کلاس {command.LocationOrLink} وجود دارد."
+                    };
+                }
+
+                // تداخل زمانی عمومی (حتی اگر مجازی یا حضوری متفاوت باشد)
+                var startStrGeneral = command.StartTime.ToString(@"hh\:mm");
+                var endStrGeneral = command.EndTime.ToString(@"hh\:mm");
+
+                return new ApplicationServiceResult
+                {
+                    State = ApplicationServiceState.InvalidDomainState,
+                    Message = $"تداخل زمانی در روز {command.DayOfWeek} ساعت ({startStrGeneral} تا {endStrGeneral}) با گروه سمینار دیگر وجود دارد."
+                };
+            }
         }
 
-        // چک تکراری بودن
-        var isDuplicate = existingGroups.Any(sg =>
+        // چک تکراری بودن کامل گروه
+        var isDuplicate = DbContext.SeminarGroups.Any(sg =>
+            sg.ModuleId == command.ModuleId &&
+            sg.DayOfWeek == command.DayOfWeek &&
             sg.StartTime == command.StartTime &&
             sg.EndTime == command.EndTime &&
             sg.Capacity == command.Capacity &&
@@ -117,7 +137,6 @@ public sealed class CreateSeminarGroupCommandHandler
                 Message = "این گروه سمینار قبلاً ثبت شده است (کاملاً تکراری)."
             };
 
-        // ایجاد و اضافه کردن گروه سمینار
         var seminarGroup = SeminarGroup.Create(
             command.ModuleId,
             command.DayOfWeek,

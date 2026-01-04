@@ -91,6 +91,7 @@ public partial class FrmStudentSeminar : Form
 
         new RegisterStudentInClassesAppService().Register(_studentId, selectedSeminarIds);
 
+
         MessageBox.Show("گروه‌های سمینار با موفقیت برای دانشجو ثبت شد.", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
         LoadSeminarsGrid();
     }

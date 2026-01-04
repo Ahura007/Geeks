@@ -29,7 +29,7 @@ public partial class FrmStudentConflict : Form
         dataGridView1.Columns.CreateTextBoxColumn("ModuleName", "نام درس");
         dataGridView1.Columns.CreateTextBoxColumn("ConflictType", "نوع تداخل ");
         dataGridView1.Columns.CreateTextBoxColumn("ConflictDate", "تاریخ ثبت تداخل");
-        dataGridView1.Columns.CreateTextBoxColumn("ClassStartUtc", "تاریخ شروع کلاس");
-        dataGridView1.Columns.CreateTextBoxColumn("ClassEndUtc", "تاریخ پایان کلاس");
+        dataGridView1.Columns.CreateTextBoxColumn("StartTime", "تاریخ شروع کلاس");
+        dataGridView1.Columns.CreateTextBoxColumn("EndTime", "تاریخ پایان کلاس");
     }
 }

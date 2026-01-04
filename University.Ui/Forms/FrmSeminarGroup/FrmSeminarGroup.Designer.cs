@@ -67,7 +67,7 @@
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.RightToLeft = RightToLeft.Yes;
-            toolStripMain.Size = new Size(1100, 25);
+            toolStripMain.Size = new Size(1203, 25);
             toolStripMain.TabIndex = 0;
             // 
             // toolStripBtnRefresh
@@ -85,7 +85,7 @@
             pnlMain.Name = "pnlMain";
             pnlMain.Padding = new Padding(20);
             pnlMain.RightToLeft = RightToLeft.Yes;
-            pnlMain.Size = new Size(1100, 725);
+            pnlMain.Size = new Size(1203, 725);
             pnlMain.TabIndex = 0;
             // 
             // pnlGrid
@@ -95,7 +95,7 @@
             pnlGrid.Location = new Point(20, 485);
             pnlGrid.Name = "pnlGrid";
             pnlGrid.Padding = new Padding(0, 20, 0, 20);
-            pnlGrid.Size = new Size(1060, 220);
+            pnlGrid.Size = new Size(1163, 220);
             pnlGrid.TabIndex = 0;
             // 
             // dataGridViewSeminarGroups
@@ -112,7 +112,7 @@
             dataGridViewSeminarGroups.RightToLeft = RightToLeft.Yes;
             dataGridViewSeminarGroups.RowHeadersWidth = 60;
             dataGridViewSeminarGroups.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewSeminarGroups.Size = new Size(1060, 180);
+            dataGridViewSeminarGroups.Size = new Size(1163, 180);
             dataGridViewSeminarGroups.TabIndex = 0;
             // 
             // pnlForm
@@ -125,7 +125,7 @@
             pnlForm.Name = "pnlForm";
             pnlForm.Padding = new Padding(0, 0, 0, 30);
             pnlForm.RightToLeft = RightToLeft.Yes;
-            pnlForm.Size = new Size(1060, 465);
+            pnlForm.Size = new Size(1163, 465);
             pnlForm.TabIndex = 1;
             // 
             // flowButtons
@@ -138,7 +138,7 @@
             flowButtons.Location = new Point(0, 370);
             flowButtons.Name = "flowButtons";
             flowButtons.Padding = new Padding(0, 20, 30, 0);
-            flowButtons.Size = new Size(1060, 65);
+            flowButtons.Size = new Size(1163, 65);
             flowButtons.TabIndex = 0;
             // 
             // btnClear
@@ -195,7 +195,7 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutMain.Size = new Size(1060, 370);
+            tableLayoutMain.Size = new Size(1163, 370);
             tableLayoutMain.TabIndex = 1;
             // 
             // lblModule
@@ -203,7 +203,7 @@
             lblModule.Anchor = AnchorStyles.Right;
             lblModule.AutoSize = true;
             lblModule.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblModule.Location = new Point(912, 27);
+            lblModule.Location = new Point(1015, 27);
             lblModule.Name = "lblModule";
             lblModule.Size = new Size(47, 16);
             lblModule.TabIndex = 0;
@@ -217,7 +217,7 @@
             cmbModule.Font = new Font("Tahoma", 9.5F);
             cmbModule.Location = new Point(13, 23);
             cmbModule.Name = "cmbModule";
-            cmbModule.Size = new Size(893, 24);
+            cmbModule.Size = new Size(996, 24);
             cmbModule.TabIndex = 1;
             // 
             // lblDayOfWeek
@@ -225,7 +225,7 @@
             lblDayOfWeek.Anchor = AnchorStyles.Right;
             lblDayOfWeek.AutoSize = true;
             lblDayOfWeek.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblDayOfWeek.Location = new Point(912, 77);
+            lblDayOfWeek.Location = new Point(1015, 77);
             lblDayOfWeek.Name = "lblDayOfWeek";
             lblDayOfWeek.Size = new Size(66, 16);
             lblDayOfWeek.TabIndex = 2;
@@ -239,7 +239,7 @@
             cmbDayOfWeek.Font = new Font("Tahoma", 9.5F);
             cmbDayOfWeek.Location = new Point(13, 73);
             cmbDayOfWeek.Name = "cmbDayOfWeek";
-            cmbDayOfWeek.Size = new Size(893, 24);
+            cmbDayOfWeek.Size = new Size(996, 24);
             cmbDayOfWeek.TabIndex = 3;
             // 
             // lblStartTime
@@ -247,7 +247,7 @@
             lblStartTime.Anchor = AnchorStyles.Right;
             lblStartTime.AutoSize = true;
             lblStartTime.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblStartTime.Location = new Point(912, 127);
+            lblStartTime.Location = new Point(1015, 127);
             lblStartTime.Name = "lblStartTime";
             lblStartTime.Size = new Size(93, 16);
             lblStartTime.TabIndex = 4;
@@ -262,7 +262,7 @@
             dtpStartTime.Location = new Point(13, 123);
             dtpStartTime.Name = "dtpStartTime";
             dtpStartTime.ShowUpDown = true;
-            dtpStartTime.Size = new Size(893, 23);
+            dtpStartTime.Size = new Size(996, 23);
             dtpStartTime.TabIndex = 5;
             // 
             // lblEndTime
@@ -270,7 +270,7 @@
             lblEndTime.Anchor = AnchorStyles.Right;
             lblEndTime.AutoSize = true;
             lblEndTime.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblEndTime.Location = new Point(912, 177);
+            lblEndTime.Location = new Point(1015, 177);
             lblEndTime.Name = "lblEndTime";
             lblEndTime.Size = new Size(82, 16);
             lblEndTime.TabIndex = 6;
@@ -285,7 +285,7 @@
             dtpEndTime.Location = new Point(13, 173);
             dtpEndTime.Name = "dtpEndTime";
             dtpEndTime.ShowUpDown = true;
-            dtpEndTime.Size = new Size(893, 23);
+            dtpEndTime.Size = new Size(996, 23);
             dtpEndTime.TabIndex = 7;
             // 
             // lblCapacity
@@ -293,7 +293,7 @@
             lblCapacity.Anchor = AnchorStyles.Right;
             lblCapacity.AutoSize = true;
             lblCapacity.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblCapacity.Location = new Point(912, 227);
+            lblCapacity.Location = new Point(1015, 227);
             lblCapacity.Name = "lblCapacity";
             lblCapacity.Size = new Size(88, 16);
             lblCapacity.TabIndex = 8;
@@ -308,7 +308,7 @@
             nudCapacity.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             nudCapacity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudCapacity.Name = "nudCapacity";
-            nudCapacity.Size = new Size(893, 23);
+            nudCapacity.Size = new Size(996, 23);
             nudCapacity.TabIndex = 9;
             nudCapacity.TextAlign = HorizontalAlignment.Center;
             nudCapacity.Value = new decimal(new int[] { 30, 0, 0, 0 });
@@ -318,7 +318,7 @@
             lblClassType.Anchor = AnchorStyles.Right;
             lblClassType.AutoSize = true;
             lblClassType.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblClassType.Location = new Point(912, 277);
+            lblClassType.Location = new Point(1015, 277);
             lblClassType.Name = "lblClassType";
             lblClassType.Size = new Size(70, 16);
             lblClassType.TabIndex = 10;
@@ -332,7 +332,7 @@
             cmbClassType.Font = new Font("Tahoma", 9.5F);
             cmbClassType.Location = new Point(13, 273);
             cmbClassType.Name = "cmbClassType";
-            cmbClassType.Size = new Size(893, 24);
+            cmbClassType.Size = new Size(996, 24);
             cmbClassType.TabIndex = 11;
             // 
             // lblLocation
@@ -340,7 +340,7 @@
             lblLocation.Anchor = AnchorStyles.Right;
             lblLocation.AutoSize = true;
             lblLocation.Font = new Font("Tahoma", 9.5F, FontStyle.Bold);
-            lblLocation.Location = new Point(912, 327);
+            lblLocation.Location = new Point(1015, 327);
             lblLocation.Name = "lblLocation";
             lblLocation.Size = new Size(115, 16);
             lblLocation.TabIndex = 12;
@@ -354,7 +354,7 @@
             txtLocation.Location = new Point(13, 323);
             txtLocation.Name = "txtLocation";
             txtLocation.PlaceholderText = "اتاق  یا لینک زوم";
-            txtLocation.Size = new Size(893, 23);
+            txtLocation.Size = new Size(996, 23);
             txtLocation.TabIndex = 13;
             txtLocation.TextAlign = HorizontalAlignment.Right;
             // 
@@ -366,7 +366,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1100, 750);
+            ClientSize = new Size(1203, 750);
             Controls.Add(pnlMain);
             Controls.Add(toolStripMain);
             Font = new Font("Tahoma", 9.5F);

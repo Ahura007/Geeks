@@ -14,12 +14,6 @@ internal sealed class SeminarGroupQueryService
             .GroupBy(ssg => ssg.SeminarGroupId)
             .ToDictionary(g => g.Key, g => g.Count());
 
-        var moduleUsedCounts = DbContext.Students
-            .SelectMany(s => s.StudentModule)
-            .GroupBy(sm => sm.ModuleId)
-            .ToDictionary(g => g.Key, g => g.Count());
-
-
         return (
             from c in DbContext.SeminarGroups
             join l in DbContext.Modules on c.ModuleId equals l.Id
